@@ -250,14 +250,7 @@ function NotFound(){ return <main className="subpage cream"><section className="
 export function App() {
   const [menuOpen,setMenuOpen]=useState(false); const [path,setPath]=useState(location.pathname);
   useEffect(()=>{ const onPop=()=>{setPath(location.pathname);setMenuOpen(false)}; const onKey=e=>e.key==="Escape"&&setMenuOpen(false); addEventListener("popstate",onPop);addEventListener("keydown",onKey);return()=>{removeEventListener("popstate",onPop);removeEventListener("keydown",onKey)}},[]);
-  useEffect(()=>{
-    const base="San Yamin";
-    if(path==="/") document.title="San Yamin";
-    else if(path==="/projects") document.title=`Projects — ${base}`;
-    else if(path==="/international-experiences") document.title=`International Experiences — ${base}`;
-    else if(path.startsWith("/leadership/")){ const item=leadership.find(x=>x.slug===path.split("/").pop()); document.title=item?`${item.title} — ${base}`:`Page not found — ${base}`; }
-    else document.title=`Page not found — ${base}`;
-  },[path]);
+  useEffect(()=>{ document.title = "San Yamin"; },[]);
   useEffect(()=>{
     const els=Array.from(document.querySelectorAll(".reveal,.reveal-fade"));
     if(!("IntersectionObserver" in window)||window.matchMedia("(prefers-reduced-motion: reduce)").matches){els.forEach(el=>el.classList.add("is-visible"));return;}
