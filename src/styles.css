@@ -329,6 +329,13 @@ a:focus-visible,button:focus-visible{outline:3px solid #efc75e;outline-offset:4p
 @media(max-width:760px){.leadership-socials .social-soon{min-height:44px}}
 
 /* External-link icon: fixed SVG so it renders identically on every device */
-.ext-arrow{display:block;flex:0 0 auto;width:11px;height:11px}
+.ext-arrow{display:inline-block;flex:0 0 auto;width:11px;height:11px;vertical-align:-1px}
+.text-link .ext-arrow,.education-site-link .ext-arrow,.notebook-post .ext-arrow{margin-left:6px}
+.arrow-link .ext-arrow{transition:transform .2s ease}
+.arrow-link:hover .ext-arrow,.arrow-link:focus-visible .ext-arrow{transform:translateX(4px)}
+.contact-links a .ext-arrow{transition:transform .2s ease}
+.contact-links a:hover .ext-arrow,.contact-links a:focus-visible .ext-arrow{transform:translate(3px,-3px)}
+.notebook-post .ext-arrow{transition:transform .2s ease}
+.notebook-post:hover .ext-arrow{transform:translate(3px,-3px)}
 .leadership-socials a .ext-arrow{transition:transform .2s ease}
 .leadership-socials a:hover .ext-arrow,.leadership-socials a:focus-visible .ext-arrow{transform:translate(3px,-3px)}
