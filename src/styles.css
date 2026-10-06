@@ -322,3 +322,8 @@ a:focus-visible,button:focus-visible{outline:3px solid #efc75e;outline-offset:4p
 .footer-line button{transition:opacity .2s ease,transform .14s ease}
 .footer-line button:hover{opacity:.7}
 .leadership-socials a,.contact-links a{outline-offset:-2px}
+
+/* Coming-soon social row (no live URL yet) */
+.leadership-socials .social-soon{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);color:#8e1f1b;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:default}
+.leadership-socials .social-soon em{font-style:normal;font-size:9px;font-weight:600;letter-spacing:1.1px;opacity:.68}
+@media(max-width:760px){.leadership-socials .social-soon{min-height:44px}}
