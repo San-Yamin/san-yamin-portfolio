@@ -1,0 +1,12 @@
+node_modules
+dist
+.netlify
+.npm
+*.log
+.DS_Store
+
+# Local design/QA reference artifacts (not part of the deployed site)
+implementation-*.png
+design-comparison.jpg
+redesign-comparison.jpg
+audit-before
