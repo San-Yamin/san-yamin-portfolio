@@ -38,6 +38,15 @@ const universityActivities = [
   { label:"Member", title:"University Music Club", note:"Active member of the university music community." },
   { label:"Member", title:"University Buddhist Association", note:"Active member of the campus Buddhist community." },
 ];
+const universityCards = [
+  { title:"Swimming Club", label:"Treasurer", note:"Managed the club’s finances and helped organise university swimming competitions and training sessions.", file:"university-swimming.jpg", anchor:"swimming-club" },
+  { title:"Music Club", label:"Member", note:"Active member of the university music community, joining performances and campus events.", file:"university-music.jpg", anchor:"clubs-and-community" },
+  { title:"Buddhist Club", label:"Member", note:"Active member of the campus Buddhist community and its activities throughout the year.", file:"university-buddhist.jpg", anchor:"clubs-and-community" },
+  { title:"Hackathons & Competitions", label:"Participant", note:"Took part in university hackathons and technical competitions, building and presenting projects with teammates.", file:"university-competitions.jpg" },
+  { title:"Teaching Assistant", label:"Academic support", note:"Supported classmates and junior students as a teaching assistant during university courses.", file:"university-teaching.jpg" },
+  { title:"Workshops & Volunteering", label:"Volunteer", note:"Joined campus workshops, community programs, and volunteering activities across the university.", file:"university-volunteering.jpg" },
+];
+
 const universityFeatures = [
   { slug:"swimming-club", type:"Treasurer", place:"University Swimming Club", title:"University Swimming Club", role:"Treasurer", paragraphs:["Managed the club’s finances and helped organise university swimming competitions and training sessions."], gallery:[{file:"university-swimming-01.jpg"},{file:"university-swimming-02.jpg"},{file:"university-swimming-03.jpg"},{file:"university-swimming-04.jpg"}] },
   { slug:"sports-event", type:"Flag Bearer", place:"University Sports Event", title:"University Sports Event", role:"Signboard bearer", paragraphs:["Represented the student body as a signboard bearer at the opening ceremony of the university sports event."], gallery:[{file:"university-sports-01.jpg"},{file:"university-sports-02.jpg"},{file:"university-sports-03.jpg"},{file:"university-sports-04.jpg"}] },
@@ -169,9 +178,9 @@ function ProjectLightbox({ project, rect, onClose }) {
   </div>;
 }
 
-function UniversityCard() {
-  const open = () => navigateTo("/university-activities");
-  return <article className="project-card university-card reveal-fade" role="link" tabIndex="0" aria-label="View university activities" onClick={open} onKeyDown={event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();open();}}}><div className="project-image"><ImageSlot file="university-service-01.jpg" alt="San Yamin volunteering at the university fresh welcome event" /><span className="project-number" aria-hidden="true">01</span></div><div className="card-body"><div className="meta"><span>University of Information Technology</span><span>Yangon, Myanmar</span></div><h3>University activities</h3><p className="role">Roles, volunteering, and campus community beyond my studies.</p><ul className="university-roles">{universityActivities.slice(0,5).map(a=><li key={a.title}><span>{a.label}</span>{a.title}</li>)}</ul><span className="project-action" aria-hidden="true"><span className="project-action-icon">→</span></span></div></article>;
+function UniversityCardGrid() {
+  const open = (anchor) => { navigateTo("/university-activities"); if (anchor) setTimeout(()=>scrollToSection(`#${anchor}`),80); };
+  return <div className="university-grid">{universityCards.map((c,i)=><article className="ua-card reveal-fade" style={{"--rd":`${Math.min(i,8)*60}ms`}} role="link" tabIndex="0" aria-label={`${c.title} — ${c.label}`} onClick={()=>open(c.anchor)} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open(c.anchor);}}} key={c.title}><div className="ua-image"><ImageSlot file={c.file} alt={`${c.title} at the University of Information Technology`} /></div><span className="ua-label">{c.label}</span><h3>{c.title}</h3><p>{c.note}</p></article>)}</div>;
 }
 
 function UniversityPage() {
@@ -222,7 +231,7 @@ function Home() {
 
     <section id="experience" className="section dark"><div className="section-inner"><SectionHeader eyebrow="Where I’ve worked" title="Experience"/><div className="experience-list"><article className="reveal"><div><span>01</span><time>Oct — Nov 2025</time></div><div><h3>KBZPay Mini Apps</h3><p className="role">Intern</p></div><p>Supported UAT and whitelist testing, go-live health checks, AppCube workflows, and BRD/FRD, T&amp;C, and FAQ preparation.</p></article><article className="reveal"><div><span>02</span><time>May — Jun 2024</time></div><div><h3>Balini Organic</h3><p className="role">AYDA Workplace Intern</p></div><p>Applied cloud, networking, digital security, databases, and marketing knowledge to support an MSME’s digital growth.</p></article><article className="reveal"><div><span>03</span><time>Three events</time></div><div><h3>JLPT</h3><p className="role">Part-Time Officer · Volunteer</p></div><p>Verified question papers and examinee seat numbers while supporting accurate event logistics.</p></article></div></div></section>
 
-    <section id="university" className="section cream university-section"><div className="section-inner"><SectionHeader eyebrow="Campus life" title="University activities" intro="Roles, volunteering, and community involvement alongside my studies."/><UniversityCard /></div></section>
+    <section id="university" className="section cream university-section"><div className="section-inner"><SectionHeader eyebrow="Beyond the classroom" title="University Activities" intro="Activities, leadership, and communities that shaped my university journey."/><UniversityCardGrid /><ArrowLink onClick={()=>navigateTo("/university-activities")}>View university activities</ArrowLink></div></section>
 
     <footer id="contact" className="section contact dark"><div className="section-inner"><span className="script">Let’s connect</span><div className="contact-row"><div><h2>Let’s build something meaningful.</h2></div><div className="contact-links"><a href="mailto:sanyamin@uit.edu.mm">Email <ExternalArrow /></a><a href="https://www.linkedin.com/in/san-yamin-18b781307" target="_blank" rel="noreferrer">LinkedIn <ExternalArrow /></a></div></div><div className="footer-line"><span>© 2026 San Yamin</span><button onClick={()=>scrollToSection(document.body, 0)}>Back to top ↑</button></div></div></footer>
     {preview && <ProjectLightbox project={preview.project} rect={preview.rect} onClose={()=>setPreview(null)}/>}
