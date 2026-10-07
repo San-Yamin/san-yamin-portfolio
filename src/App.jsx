@@ -30,6 +30,21 @@ const leadership = [
   { slug:"aspire-now", title:"Aspire Now", role:"Co-Founder · Head of Graphic Design", description:"A youth-led platform creating accessible, engaging content and initiatives that help young people discover opportunities, build skills, and take action.", image:null, imageFile:"leadership-aspire-now.jpg", posts:[{file:"aspire-now-post-01.jpg",label:"Singapore Transport Guide"},{file:"aspire-now-post-02.jpg",label:"AUS Scholarship Webinar"},{file:"aspire-now-post-03.jpg",label:"Singapore Opportunities"},{file:"aspire-now-post-04.jpg",label:"HIIA Future Leaders"},{file:"aspire-now-post-05.jpg",label:"Study in Seoul"},{file:"aspire-now-post-06.jpg",label:"Burnout Signs"},{file:"aspire-now-post-07.jpg",label:"Study in Australia"},{file:"aspire-now-post-08.jpg",label:"New Year 2026"},{file:"aspire-now-post-09.jpg",label:"Study Method Highlight"},{file:"aspire-now-post-10.jpg",label:"LSE Online Courses"},{file:"aspire-now-post-11.jpg",label:"Passive Reading"},{file:"aspire-now-post-12.jpg",label:"Connect Better"},{file:"aspire-now-post-13.jpg",label:"Study in Canada"},{file:"aspire-now-post-14.jpg",label:"Schwarzman Scholars"},{file:"aspire-now-post-15.jpg",label:"Financial Portfolio"}], why:"Helping students discover scholarships, university pathways, and personal development opportunities through accessible and engaging information.", work:["Co-founded and helped develop the youth initiative","Create visual content and manage the graphic design team","Support webinars, opportunity sharing, and youth-focused campaigns"], links:[{label:"Facebook",url:"https://www.facebook.com/profile.php?id=61552851140427"},{label:"Telegram",url:"https://t.me/aspirenow_org"},{label:"Instagram",url:"https://www.instagram.com/aspirenoworg/"}] },
 ];
 
+const universityActivities = [
+  { label:"Treasurer", title:"University Swimming Club", note:"Managed club finances and helped organize university swimming competitions." },
+  { label:"Volunteer", title:"University Welcome Event", note:"Welcomed and guided new students at the university’s fresh welcome event." },
+  { label:"Flag Bearer", title:"University Sports Event", note:"Represented the student body as a signboard bearer at the opening ceremony." },
+  { label:"Volunteer", title:"Tree Planting Program", note:"Took part in the university’s tree planting and campus sustainability activities." },
+  { label:"Member", title:"University Music Club", note:"Active member of the university music community." },
+  { label:"Member", title:"University Buddhist Association", note:"Active member of the campus Buddhist community." },
+];
+const universityPhotos = [
+  { file:"university-welcome.jpg", label:"Fresh welcome event" },
+  { file:"university-sports.jpg", label:"University sports event" },
+  { file:"university-tree-planting.jpg", label:"Tree planting program" },
+  { file:"university-swimming.jpg", label:"Swimming club" },
+];
+
 function navigateTo(path) {
   window.history.pushState({}, "", path);
   window.dispatchEvent(new PopStateEvent("popstate"));
@@ -147,6 +162,15 @@ function ProjectLightbox({ project, rect, onClose }) {
   </div>;
 }
 
+function UniversityCard() {
+  const open = () => navigateTo("/university-activities");
+  return <article className="project-card university-card reveal-fade" role="link" tabIndex="0" aria-label="View university activities" onClick={open} onKeyDown={event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();open();}}}><div className="project-image"><ImageSlot file="university-welcome.jpg" alt="San Yamin volunteering at the university fresh welcome event" /><span className="project-number" aria-hidden="true">01</span></div><div className="card-body"><div className="meta"><span>University of Information Technology</span><span>Yangon, Myanmar</span></div><h3>University activities</h3><p className="role">Roles, volunteering, and campus community beyond my studies.</p><ul className="university-roles">{universityActivities.slice(0,5).map(a=><li key={a.title}><span>{a.label}</span>{a.title}</li>)}</ul><span className="project-action" aria-hidden="true"><span className="project-action-icon">→</span></span></div></article>;
+}
+
+function UniversityPage() {
+  return <main className="subpage cream university-detail"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Campus life</span><p className="kicker">University of Information Technology · Yangon</p><h1>University activities.</h1><p>Roles, volunteering, and community involvement alongside my studies at UIT — from managing a club's finances to representing the student body.</p></div></section><section className="section dark"><div className="section-inner"><SectionHeader eyebrow="Involvement" title="Roles & community"/><div className="experience-list">{universityActivities.map((a,i)=><article className="reveal" key={a.title}><div><span>0{i + 1}</span><time>{a.label}</time></div><div><h3>{a.title}</h3><p className="role">{a.label}</p></div><p>{a.note}</p></article>)}</div></div></section><section className="section cream"><div className="section-inner"><SectionHeader eyebrow="Moments" title="Photos" intro="A few moments from university activities and events."/><div className="university-gallery">{universityPhotos.map(p=><figure className="reveal" key={p.file}><ImageSlot file={p.file} alt={`${p.label} — University activities`}/><figcaption>{p.label}</figcaption></figure>)}</div></div></section></main>;
+}
+
 function ExchangeCard({ item, index }) {
   const openExperience = () => {navigateTo("/international-experiences");setTimeout(()=>scrollToSection(`#${item.slug}`),60);};
   return <article className="exchange-card featured reveal-fade" style={{"--rd":`${Math.min(index,8)*70}ms`}} role="link" tabIndex="0" aria-label={`View ${item.title}`} onClick={openExperience} onKeyDown={event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openExperience();}}}><div className="exchange-image"><ImageSlot src={item.image} file={item.imageFile} alt={item.title} /><span className="exchange-number">0{index + 1}</span></div><div className="card-body"><div className="meta"><span>{item.place}</span><span>{item.year}</span></div><h3>{item.title}</h3><p className="role">{item.role}</p><span className="exchange-mark">{item.type}</span></div></article>;
@@ -184,6 +208,8 @@ function Home() {
     <section id="projects" className="section cream"><div className="section-inner"><SectionHeader eyebrow="Selected work" title="Technical projects" intro="Selected projects across cybersecurity, distributed systems, AI, and web development."/><div className="card-grid">{featuredProjects.map((p,i)=><ProjectCard project={p} index={i} key={p.title} onPreview={(project,rect)=>setPreview({project,rect})}/>)}</div><ArrowLink onClick={()=>navigateTo("/projects")}>View projects</ArrowLink></div></section>
 
     <section id="experience" className="section dark"><div className="section-inner"><SectionHeader eyebrow="Where I’ve worked" title="Experience"/><div className="experience-list"><article className="reveal"><div><span>01</span><time>Oct — Nov 2025</time></div><div><h3>KBZPay Mini Apps</h3><p className="role">Intern</p></div><p>Supported UAT and whitelist testing, go-live health checks, AppCube workflows, and BRD/FRD, T&amp;C, and FAQ preparation.</p></article><article className="reveal"><div><span>02</span><time>May — Jun 2024</time></div><div><h3>Balini Organic</h3><p className="role">AYDA Workplace Intern</p></div><p>Applied cloud, networking, digital security, databases, and marketing knowledge to support an MSME’s digital growth.</p></article><article className="reveal"><div><span>03</span><time>Three events</time></div><div><h3>JLPT</h3><p className="role">Part-Time Officer · Volunteer</p></div><p>Verified question papers and examinee seat numbers while supporting accurate event logistics.</p></article></div></div></section>
+
+    <section id="university" className="section cream university-section"><div className="section-inner"><SectionHeader eyebrow="Campus life" title="University activities" intro="Roles, volunteering, and community involvement alongside my studies."/><UniversityCard /></div></section>
 
     <footer id="contact" className="section contact dark"><div className="section-inner"><span className="script">Let’s connect</span><div className="contact-row"><div><h2>Let’s build something meaningful.</h2></div><div className="contact-links"><a href="mailto:sanyamin@uit.edu.mm">Email <ExternalArrow /></a><a href="https://www.linkedin.com/in/san-yamin-18b781307" target="_blank" rel="noreferrer">LinkedIn <ExternalArrow /></a></div></div><div className="footer-line"><span>© 2026 San Yamin</span><button onClick={()=>scrollToSection(document.body, 0)}>Back to top ↑</button></div></div></footer>
     {preview && <ProjectLightbox project={preview.project} rect={preview.rect} onClose={()=>setPreview(null)}/>}
@@ -264,6 +290,6 @@ export function App() {
     els.forEach(el=>{ if(!el.classList.contains("is-visible")) io.observe(el); });
     return ()=>io.disconnect();
   },[path]);
-  let page=path==="/"?<Home/>:path==="/projects"?<ProjectsPage/>:path==="/international-experiences"?<ExchangesPage/>:path.startsWith("/leadership/")?<LeadershipPage slug={path.split("/").pop()}/>:<NotFound/>;
+  let page=path==="/"?<Home/>:path==="/projects"?<ProjectsPage/>:path==="/international-experiences"?<ExchangesPage/>:path==="/university-activities"?<UniversityPage/>:path.startsWith("/leadership/")?<LeadershipPage slug={path.split("/").pop()}/>:<NotFound/>;
   return <><Header menuOpen={menuOpen} setMenuOpen={setMenuOpen}/><div className="route" key={path}>{page}</div></>;
 }

@@ -339,3 +339,19 @@ a:focus-visible,button:focus-visible{outline:3px solid #efc75e;outline-offset:4p
 .notebook-post:hover .ext-arrow{transform:translate(3px,-3px)}
 .leadership-socials a .ext-arrow{transition:transform .2s ease}
 .leadership-socials a:hover .ext-arrow,.leadership-socials a:focus-visible .ext-arrow{transform:translate(3px,-3px)}
+
+/* University activities */
+.university-section .project-card.university-card{max-width:780px;margin:0 auto}
+.university-card .card-body{min-height:0}
+.university-roles{margin:16px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:9px 24px}
+.university-roles li{display:flex;align-items:baseline;gap:10px;padding-bottom:7px;border-bottom:1px solid rgba(142,31,27,.15);font-size:13px;line-height:1.4;color:#5a3a35}
+.university-roles li span{flex:0 0 auto;color:var(--card-accent,#8e1f1b);font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.university-gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px;margin-top:6px}
+.university-gallery figure{margin:0}
+.university-gallery .image-slot{min-height:230px}
+.university-gallery figcaption{margin-top:9px;font-size:9px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;opacity:.7}
+@media(max-width:760px){
+  .university-roles{grid-template-columns:1fr}
+  .university-gallery{grid-template-columns:1fr}
+  .university-gallery .image-slot{min-height:200px}
+}
