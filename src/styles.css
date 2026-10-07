@@ -381,3 +381,8 @@ img[src$="achievement-kbzpay-hackathon-02.jpg"]{object-position:center 66%}
 /* Green Talent certificate: show the whole document, no crop */
 img[src$="achievement-green-talent-01.jpg"],
 img[src$="achievement-unesco-hackathon-01.jpg"]{object-fit:contain;padding:18px;background:#f7f1ea}
+
+/* Section rule above International Experiences / Technical projects / University Activities: thin burgundy */
+#projects .section-header::before,
+.international-section .section-header::before,
+#university .section-header::before{background:rgba(142,31,27,.85);height:1px}
