@@ -180,7 +180,7 @@ function ProjectLightbox({ project, rect, onClose }) {
 
 function UniversityCardGrid() {
   const open = (anchor) => { navigateTo("/university-activities"); if (anchor) setTimeout(()=>scrollToSection(`#${anchor}`),80); };
-  return <div className="university-grid">{universityCards.map((c,i)=><article className="ua-card reveal-fade" style={{"--rd":`${Math.min(i,8)*60}ms`}} role="link" tabIndex="0" aria-label={`${c.title} — ${c.label}`} onClick={()=>open(c.anchor)} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open(c.anchor);}}} key={c.title}><div className="ua-image"><ImageSlot file={c.file} alt={`${c.title} at the University of Information Technology`} /></div><span className="ua-label">{c.label}</span><h3>{c.title}</h3><p>{c.note}</p></article>)}</div>;
+  return <div className="university-grid">{universityCards.slice(0,3).map((c,i)=><article className="ua-card reveal-fade" style={{"--rd":`${Math.min(i,8)*60}ms`}} role="link" tabIndex="0" aria-label={`${c.title} — ${c.label}`} onClick={()=>open(c.anchor)} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open(c.anchor);}}} key={c.title}><div className="ua-image"><ImageSlot file={c.file} alt={`${c.title} at the University of Information Technology`} /></div><span className="ua-label">{c.label}</span><h3>{c.title}</h3><p>{c.note}</p></article>)}</div>;
 }
 
 function UniversityPage() {
