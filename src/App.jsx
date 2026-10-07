@@ -239,7 +239,7 @@ function Home() {
 }
 function ProjectsPage() {
   const [preview, setPreview] = useState(null);
-  return <main className="subpage cream projects-page"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Selected work</span><p className="kicker">Technical portfolio · 2023—2026</p><h1>Projects.</h1><p>A selected collection of projects across cybersecurity, AI, databases, web development, and engineering.</p></div></section><section id="projects" className="section"><div className="section-inner"><div className="card-grid">{projects.map((p,i)=><ProjectCard project={p} index={i} key={p.title} onPreview={(project,rect)=>setPreview({project,rect})}/>)}</div></div></section>{preview && <ProjectLightbox project={preview.project} rect={preview.rect} onClose={()=>setPreview(null)}/>}</main>;
+  return <main className="subpage cream projects-page"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Selected work</span><p className="kicker">Technical portfolio</p><h1>Projects.</h1><p>A selected collection of projects across cybersecurity, AI, databases, web development, and engineering.</p></div></section><section id="projects" className="section"><div className="section-inner"><div className="card-grid">{projects.map((p,i)=><ProjectCard project={p} index={i} key={p.title} onPreview={(project,rect)=>setPreview({project,rect})}/>)}</div></div></section>{preview && <ProjectLightbox project={preview.project} rect={preview.rect} onClose={()=>setPreview(null)}/>}</main>;
 }
 
 function ExchangesPage() {
