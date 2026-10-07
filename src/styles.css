@@ -355,3 +355,9 @@ a:focus-visible,button:focus-visible{outline:3px solid #efc75e;outline-offset:4p
   .university-gallery{grid-template-columns:1fr}
   .university-gallery .image-slot{min-height:200px}
 }
+
+/* Achievements: clickable homepage rows linking into the detail page */
+.achievement-list article[role="link"]{cursor:pointer;transition:background-color .25s ease}
+.achievement-list article[role="link"]:hover{background:rgba(243,238,229,.07)}
+.achievement-list article[role="link"]:focus-visible{outline:3px solid #efc75e;outline-offset:4px}
+.achievement-list article[role="link"]:active{background:rgba(243,238,229,.13)}
