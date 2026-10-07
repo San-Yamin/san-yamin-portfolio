@@ -60,11 +60,12 @@ const achievements = [
   { slug:"green-talent-generation-hackathon", type:"Hackathon", date:"July 2024", title:"Green Talent Generation Hackathon", role:"Thailand · Sustainability", description:"Contributed to a technology project supporting sustainable practices.", gallery:[{file:"achievement-green-talent-01.jpg"}] },
   { slug:"youth-entrepreneurship-program", type:"Program", date:"May 2024", title:"Youth Entrepreneurship Program", role:"Pitch Deck Competition", description:"Won second prize with a team business idea focused on sustainability.", gallery:[{file:"achievement-youth-entrepreneurship-01.jpg"},{file:"achievement-youth-entrepreneurship-02.jpg"},{file:"achievement-youth-entrepreneurship-03.jpg"},{file:"achievement-youth-entrepreneurship-04.jpg"}] },
 ];
+if("scrollRestoration" in history) history.scrollRestoration="manual";
 
 function navigateTo(path) {
   window.history.pushState({}, "", path);
   window.dispatchEvent(new PopStateEvent("popstate"));
-  window.scrollTo({ top:0, behavior:"auto" });
+  window.scrollTo({ top:0, left:0, behavior:"instant" });
 }
 
 function scrollToSection(target, offset = 70) {
@@ -179,8 +180,8 @@ function ProjectLightbox({ project, rect, onClose }) {
 }
 
 function UniversityCardGrid() {
-  const open = (anchor) => { navigateTo("/university-activities"); if (anchor) setTimeout(()=>scrollToSection(`#${anchor}`),80); };
-  return <div className="university-grid">{universityCards.slice(0,3).map((c,i)=><article className="ua-card reveal-fade" style={{"--rd":`${Math.min(i,8)*60}ms`}} role="link" tabIndex="0" aria-label={`${c.title} — ${c.label}`} onClick={()=>open(c.anchor)} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open(c.anchor);}}} key={c.title}><div className="ua-image"><ImageSlot file={c.file} alt={`${c.title} at the University of Information Technology`} /></div><span className="ua-label">{c.label}</span><h3>{c.title}</h3><p>{c.note}</p></article>)}</div>;
+  const open = () => navigateTo("/university-activities");
+  return <div className="university-grid">{universityCards.slice(0,3).map((c,i)=><article className="ua-card reveal-fade" style={{"--rd":`${Math.min(i,8)*60}ms`}} role="link" tabIndex="0" aria-label={`${c.title} — ${c.label}`} onClick={open} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open();}}} key={c.title}><div className="ua-image"><ImageSlot file={c.file} alt={`${c.title} at the University of Information Technology`} /></div><span className="ua-label">{c.label}</span><h3>{c.title}</h3><p>{c.note}</p></article>)}</div>;
 }
 
 function UniversityPage() {
@@ -188,12 +189,11 @@ function UniversityPage() {
 }
 
 function AchievementsPage() {
-  const openAchievement = (slug) => { navigateTo("/achievements"); setTimeout(()=>scrollToSection(`#${slug}`),60); };
   return <main className="subpage cream achievements-page"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Selected highlights</span><p className="kicker">Hackathons · Awards · Programs</p><h1>Achievements.</h1><p>Hackathons, awards, and programs where I contributed — from building award-winning mini apps to youth-focused technology and sustainability projects.</p></div></section><div className="experience-showcase">{achievements.map((x,i)=><section id={x.slug} className={`experience-feature${i % 2 ? " reverse" : ""}`} key={x.slug}><div className="section-inner"><div className="experience-feature-copy reveal"><div className="experience-feature-meta"><span>0{i + 1} · {x.type}</span><span>{x.date}</span></div><h2>{x.title}</h2><p className="experience-role">{x.role}</p><p>{x.description}</p></div><div className={`experience-gallery reveal${x.gallery.length === 1 ? " single" : ""}`}>{x.gallery.map((photo,j)=><figure className={j === 0 && x.gallery.length > 1 ? "lead-photo" : ""} key={photo.src || photo.file}><ImageSlot src={photo.src} file={photo.file} alt={`${x.title} photo ${j + 1}`} /></figure>)}</div></div></section>)}</div></main>;
 }
 
 function ExchangeCard({ item, index }) {
-  const openExperience = () => {navigateTo("/international-experiences");setTimeout(()=>scrollToSection(`#${item.slug}`),60);};
+  const openExperience = () => navigateTo("/international-experiences");
   return <article className="exchange-card featured reveal-fade" style={{"--rd":`${Math.min(index,8)*70}ms`}} role="link" tabIndex="0" aria-label={`View ${item.title}`} onClick={openExperience} onKeyDown={event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openExperience();}}}><div className="exchange-image"><ImageSlot src={item.image} file={item.imageFile} alt={item.title} /><span className="exchange-number">0{index + 1}</span></div><div className="card-body"><div className="meta"><span>{item.place}</span><span>{item.year}</span></div><h3>{item.title}</h3><p className="role">{item.role}</p><span className="exchange-mark">{item.type}</span></div></article>;
 }
 
@@ -215,7 +215,7 @@ function Header({ menuOpen, setMenuOpen }) {
 
 function Home() {
   const [preview, setPreview] = useState(null);
-  const openAchievement = (slug) => { navigateTo("/achievements"); setTimeout(()=>scrollToSection(`#${slug}`),60); };
+  const openAchievement = () => navigateTo("/achievements");
   return <>
     <section id="top" className="hero"><div className="hero-copy"><div className="hero-focus hero-focus-top" aria-label="Focus areas">{["Cybersecurity","AI & ML","Digital Trust","Social Impact","Global Collaboration"].map(item=><span key={item}>{item}</span>)}</div><h1>San<br/>Yamin<span>.</span></h1><p className="intro">I’m San Yamin from Myanmar, working at the intersection of cybersecurity, AI, digital trust, and youth empowerment. As a cybersecurity student, researcher, content creator, and tech builder, I combine technical problem-solving with visual storytelling to make technology safer, more responsible, and more accessible. Through research, technical projects, Aspire Now, and SanSan’s Yellow Notebook, I share opportunities and experiences while building digital solutions that can create meaningful impact for young people and communities.</p><div className="hero-links"><a className="text-link" href="https://www.linkedin.com/in/san-yamin-18b781307" target="_blank" rel="noreferrer">LinkedIn <ExternalArrow /></a><a className="text-link" href="https://github.com/San-Yamin" target="_blank" rel="noreferrer">GitHub <ExternalArrow /></a><a className="text-link" href="/images-to-add/san-yamin-cv.pdf" download>Download CV <ExternalArrow /></a></div></div><div className="hero-visual-wrap"><span className="hero-word" aria-hidden="true">Portfolio</span><figure className="hero-visual"><div className="hero-image-frame"><img src="/assets/portrait-hero.jpg" alt="San Yamin"/></div><figcaption className="portrait-label">Yangon, Myanmar</figcaption></figure></div></section>
 
@@ -225,7 +225,7 @@ function Home() {
 
     <section className="section cream international-section"><div className="section-inner"><SectionHeader eyebrow="Across borders" title="International experiences" intro="Learning, contributing, and representing Myanmar in regional and international spaces."/><div className="card-grid">{exchanges.slice(0,3).map((x,i)=><ExchangeCard item={x} index={i} key={x.title}/>)}</div><ArrowLink onClick={()=>navigateTo("/international-experiences")}>View experiences</ArrowLink></div></section>
 
-    <section className="section red achievement"><div className="section-inner"><SectionHeader eyebrow="Selected highlights" title="Achievements"/><div className="achievement-list">{achievements.map((a,i)=><article className="reveal" role="link" tabIndex="0" aria-label={`View ${a.title}`} onClick={()=>openAchievement(a.slug)} onKeyDown={event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openAchievement(a.slug);}}} key={a.slug}><div><span>0{i + 1}</span><time>{a.date}</time></div><div><h3>{a.title}</h3><p className="role">{a.role}</p></div><p>{a.description}</p></article>)}</div><ArrowLink onClick={()=>navigateTo("/achievements")}>View achievements</ArrowLink></div></section>
+    <section className="section red achievement"><div className="section-inner"><SectionHeader eyebrow="Selected highlights" title="Achievements"/><div className="achievement-list">{achievements.map((a,i)=><article className="reveal" role="link" tabIndex="0" aria-label={`View ${a.title}`} onClick={openAchievement} onKeyDown={event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openAchievement();}}} key={a.slug}><div><span>0{i + 1}</span><time>{a.date}</time></div><div><h3>{a.title}</h3><p className="role">{a.role}</p></div><p>{a.description}</p></article>)}</div><ArrowLink onClick={()=>navigateTo("/achievements")}>View achievements</ArrowLink></div></section>
 
     <section id="projects" className="section cream"><div className="section-inner"><SectionHeader eyebrow="Selected work" title="Technical projects" intro="Selected projects across cybersecurity, distributed systems, AI, and web development."/><div className="card-grid">{featuredProjects.map((p,i)=><ProjectCard project={p} index={i} key={p.title} onPreview={(project,rect)=>setPreview({project,rect})}/>)}</div><ArrowLink onClick={()=>navigateTo("/projects")}>View projects</ArrowLink></div></section>
 
@@ -303,6 +303,13 @@ export function App() {
   const [menuOpen,setMenuOpen]=useState(false); const [path,setPath]=useState(location.pathname);
   useEffect(()=>{ const onPop=()=>{setPath(location.pathname);setMenuOpen(false)}; const onKey=e=>e.key==="Escape"&&setMenuOpen(false); addEventListener("popstate",onPop);addEventListener("keydown",onKey);return()=>{removeEventListener("popstate",onPop);removeEventListener("keydown",onKey)}},[]);
   useEffect(()=>{ document.title = "San Yamin"; },[]);
+  useEffect(()=>{
+    const toTop = () => window.scrollTo({ top:0, left:0, behavior:"instant" });
+    toTop();
+    const raf = requestAnimationFrame(toTop);
+    const timer = setTimeout(toTop, 60);
+    return () => { cancelAnimationFrame(raf); clearTimeout(timer); };
+  },[path]);
   useEffect(()=>{
     const els=Array.from(document.querySelectorAll(".reveal,.reveal-fade"));
     if(!("IntersectionObserver" in window)||window.matchMedia("(prefers-reduced-motion: reduce)").matches){els.forEach(el=>el.classList.add("is-visible"));return;}
