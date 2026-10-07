@@ -366,3 +366,9 @@ a:focus-visible,button:focus-visible{outline:3px solid #efc75e;outline-offset:4p
 @media (max-width:960px){.university-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:620px){.university-grid{grid-template-columns:1fr;gap:18px}.ua-card{padding:14px 16px 24px}.ua-card p{max-width:38ch}}
 @media (prefers-reduced-motion:reduce){.ua-card{transition:none}.ua-card:hover{transform:none}}
+
+/* University Activities heading + CTA match the red portfolio sections */
+#university .section-header{border-top-color:rgba(142,31,27,.45)}
+#university .section-header .script,#university .section-header h2{color:#8e1f1b}
+#university .section-header p{max-width:none;color:#5f4540;opacity:1;text-align:left}
+#university>.section-inner>.arrow-link{min-width:205px;margin-top:34px;color:#8e1f1b;border-bottom-color:#d9b8b0;font-weight:600}
