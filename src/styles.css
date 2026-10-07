@@ -361,3 +361,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #efc75e;outline-offset:4p
 .achievement-list article[role="link"]:hover{background:rgba(243,238,229,.07)}
 .achievement-list article[role="link"]:focus-visible{outline:3px solid #efc75e;outline-offset:4px}
 .achievement-list article[role="link"]:active{background:rgba(243,238,229,.13)}
+
+.experience-gallery.single{grid-template-columns:1fr;grid-template-rows:420px}
+.experience-gallery.single figure{grid-row:auto}
+@media (max-width:760px){.experience-gallery.single{grid-template-rows:240px}}
