@@ -372,3 +372,8 @@ a:focus-visible,button:focus-visible{outline:3px solid #efc75e;outline-offset:4p
 #university .section-header .script,#university .section-header h2{color:#8e1f1b}
 #university .section-header p{max-width:none;color:#5f4540;opacity:1;text-align:left}
 #university>.section-inner>.arrow-link{min-width:205px;margin-top:34px;color:#8e1f1b;border-bottom-color:#d9b8b0;font-weight:600}
+
+/* Crop framing: shift these photos up slightly inside their slots */
+img[src$="university-buddhist.jpg"],
+img[src$="university-clubs-04.jpg"],
+img[src$="achievement-kbzpay-hackathon-02.jpg"]{object-position:center 66%}
