@@ -50,6 +50,10 @@ When implementing from a selected generated mock, treat that image as the source
 
 Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts/prepare-sites-build.mjs`, and `tests/sites-worker.test.mjs` intact so the same local prototype can be handed to Sites. Before a Sites handoff, run `npm run build` and `npm run test:sites`; the build must leave `dist/client/index.html`, `dist/server/index.js`, and `dist/.openai/hosting.json`.
 
+## Hosting
+
+The primary public host is Cloudflare Pages (`wrangler.toml`, project `san-yamin`, publish `dist/client`, SPA routing via `public/_redirects`); the live URL is https://san-yamin.pages.dev. The legacy Netlify URL https://san-yamin.netlify.app is kept because it is printed on submitted CVs, but its `*.netlify.app` DNS intermittently returns a dead edge IP (52.74.6.109) and its deploys stopped publishing after abe5e2f — both are Netlify-side issues outside our control. Keep `canonical`/`og:url` meta pointed at the pages.dev host.
+
 ## Performance
 
 Fonts are self-hosted in `public/fonts/*.woff2` (DM Sans, Oswald, Petemoss) with `@font-face` at the top of `src/styles.css`; do not reintroduce a Google Fonts `@import` or `fonts.gstatic` request. Keep the `preload` hints in `index.html` for the two text fonts and for `/assets/portrait-hero.webp`.
