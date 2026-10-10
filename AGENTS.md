@@ -52,7 +52,7 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 ## Hosting
 
-The primary public host is Vercel (`vercel.json`, publish `dist/client`, SPA rewrites); the intended live URL is https://san-yamin.vercel.app. Cloudflare Pages config (`wrangler.toml`, `public/_redirects`) remains as a second free host if needed. The legacy Netlify URL https://san-yamin.netlify.app is kept because it is printed on submitted CVs, but its `*.netlify.app` DNS intermittently returns a dead edge IP (52.74.6.109) and its deploys stopped publishing after abe5e2f — both are Netlify-side issues outside our control. Keep `canonical`/`og:url` meta pointed at the vercel.app host.
+The primary public host is Vercel (`vercel.json`, publish `dist/client`, SPA rewrites); the live URL is https://san-yamin.vercel.app (Vercel project name `san-yamin`). Cloudflare Pages config (`wrangler.toml`, `public/_redirects`) remains as a second free host if needed. The legacy Netlify URL https://san-yamin.netlify.app is kept because it is printed on submitted CVs, but its `*.netlify.app` DNS intermittently returns a dead edge IP (52.74.6.109) and its deploys stopped publishing after abe5e2f — both are Netlify-side issues outside our control. Keep `canonical`/`og:url` meta pointed at the vercel.app host.
 
 ## Performance
 
