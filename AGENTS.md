@@ -50,6 +50,12 @@ When implementing from a selected generated mock, treat that image as the source
 
 Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts/prepare-sites-build.mjs`, and `tests/sites-worker.test.mjs` intact so the same local prototype can be handed to Sites. Before a Sites handoff, run `npm run build` and `npm run test:sites`; the build must leave `dist/client/index.html`, `dist/server/index.js`, and `dist/.openai/hosting.json`.
 
+## Performance
+
+Fonts are self-hosted in `public/fonts/*.woff2` (DM Sans, Oswald, Petemoss) with `@font-face` at the top of `src/styles.css`; do not reintroduce a Google Fonts `@import` or `fonts.gstatic` request. Keep the `preload` hints in `index.html` for the two text fonts and for `/assets/portrait-hero.webp`.
+
+The hero uses a `<picture>` with `portrait-hero.webp` first and the untouched `portrait-hero.jpg` as fallback, so the protected source `portrait-hero.jpg` is never re-encoded or resized. Add new raster assets as optimized `.webp` siblings the same way.
+
 ## Motion system (P0)
 
 Scroll reveal, hero entrance, and route fade are live. Use `.reveal` (fade + 22px rise) for static blocks and `.reveal-fade` (opacity only) for elements with hover transforms (`.project-card`, `.exchange-card`, `.notebook-post`). Stagger with the `--rd` CSS variable. The IntersectionObserver lives in `App()` and re-runs on `path` change; route wrapper is the keyed `.route` div. Keep durations 200–600ms, easing `cubic-bezier(.2,.75,.25,1)`, no parallax/scroll-jacking, and always respect `prefers-reduced-motion`. P1 is live: mobile menu animates via max-height/opacity/visibility (no `display` toggle), header gets `.scrolled` after 40px, section-header top rules draw with `::before scaleX`, and `ImageSlot` images fade in via `.fade-img.is-loaded` (1.5s fallback). P2 is live: `:active` press scale on buttons/arrow links/back/menu/cards, contact-row left-padding sweep with arrow nudge, text-link opacity hover, footer button hover. Focus rings and arrow slides already existed. The motion system (P0–P2) is complete.
