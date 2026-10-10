@@ -6,6 +6,8 @@ Before making substantial visual changes, use the Product Design plugin's `get-c
 
 ## User asset preference
 
+The homepage “Download CV” button serves `public/images-to-add/CV_San_Yamin.pdf`; replace that file (same filename) to update the CV, and keep the printed portfolio URL matching the Vercel host.
+
 Keep clearly labeled, dedicated image slots for content whose final photos are not available yet. Store future user-supplied images in `public/images-to-add/`, keep expected filenames visible in the UI, and centralize those paths in the content data near the top of `src/App.jsx` so replacement is straightforward.
 
 Do not include a standalone About Me section on the homepage. The hero now carries the personal introduction and focus areas, while Education remains its own academic, information-led section immediately afterward.
