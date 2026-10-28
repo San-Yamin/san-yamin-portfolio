@@ -99,6 +99,57 @@ a:focus-visible,button:focus-visible{outline:3px solid #efc75e;outline-offset:4p
 @media(max-width:860px) and (min-width:761px){.hero{grid-template-columns:minmax(0,1fr) minmax(300px,.82fr);gap:26px}.hero h1{font-size:78px}.hero .intro{font-size:16px}.hero-visual-wrap{height:570px}.hero-visual{height:550px}.hero-visual-wrap::before{width:330px;left:-5%}.hero-visual-wrap .hero-word{font-size:105px;opacity:.72}.button{padding-inline:16px}}
 @media(max-width:760px){.hero{min-height:auto;padding:108px 22px 62px;grid-template-columns:1fr;gap:38px}.hero h1{font-size:clamp(76px,24vw,108px)}.hero-visual-wrap{width:100%;height:min(590px,145vw);justify-self:stretch}.hero-visual-wrap::before{width:88vw;max-width:420px;left:-18%;top:7%;opacity:.72}.hero-visual-wrap .hero-word{display:none}.hero-visual{width:94%;height:min(560px,137vw);margin-left:auto}.portrait-label{left:16px;bottom:-13px}.hero-actions .button{padding-inline:10px}}
 
+/* Intro Hero - Cinematic Interactive Introduction */
+.intro-hero{position:relative;min-height:100svh;min-height:100vh;padding:0;display:flex;align-items:center;justify-content:center;color:var(--cream);overflow:hidden;isolation:isolate}
+.intro-hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.intro-hero-gradient{position:absolute;inset:0;background:radial-gradient(1600px 980px at 14% 8%, rgba(210,58,44,.34), transparent 66%),radial-gradient(1200px 880px at 86% 14%, rgba(110,14,12,.42), transparent 70%),linear-gradient(180deg,#8a1612 0%,#5c100d 48%,#3a0907 100%)}
+.intro-hero-gradient-3d{background:radial-gradient(1600px 1100px at 50% 35%, rgba(235,82,66,.32), transparent 64%),radial-gradient(1200px 900px at 18% 70%, rgba(140,24,18,.28), transparent 70%),radial-gradient(1100px 860px at 82% 72%, rgba(120,18,14,.26), transparent 72%),conic-gradient(from 180deg at 50% 50%, rgba(156,28,22,.18) 0deg, rgba(94,14,12,.22) 120deg, rgba(64,10,8,.26) 240deg, rgba(156,28,22,.18) 360deg),linear-gradient(180deg,#8c1611 0%,#5a0f0c 52%,#2a0605 100%)}
+.intro-hero-gradient-3d::before{content:"";position:absolute;inset:-20%;background:radial-gradient(800px 800px at 30% 20%, rgba(255,120,98,.16), transparent 70%),radial-gradient(700px 700px at 70% 25%, rgba(248,110,88,.14), transparent 72%);filter:blur(60px);animation:intro-bg-shift 18s ease-in-out infinite}
+.intro-hero-gradient-3d::after{content:"";position:absolute;inset:0;background:radial-gradient(900px 700px at 50% 80%, rgba(196,62,48,.18), transparent 76%)}
+.intro-hero::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(920px 920px at 50% 42%, transparent 32%, rgba(16,4,3,.62) 100%);pointer-events:none}
+.intro-hero-3d::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg, rgba(140,22,17,.18) 0%, transparent 38%, rgba(26,6,5,.42) 100%);pointer-events:none}
+@keyframes intro-bg-shift{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(2%, -2%, 0) scale(1.02)}}
+@keyframes intro-orb-float{0%,100%{transform:translate3d(0,0,0)}33%{transform:translate3d(3%, -2%, 0)}66%{transform:translate3d(-2%, 2%, 0)}}
+.intro-hero-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.52;mix-blend-mode:screen;will-change:transform}
+.intro-hero-orb-one{width:580px;height:580px;left:-18%;top:2%;background:radial-gradient(circle, rgba(244,118,96,.34) 0%, transparent 76%);animation:intro-orb-float 16s ease-in-out infinite}
+.intro-hero-orb-two{width:680px;height:680px;right:-24%;top:8%;background:radial-gradient(circle, rgba(198,46,36,.4) 0%, transparent 78%);animation:intro-orb-float 20s ease-in-out infinite reverse}
+.intro-hero-orb-three{width:520px;height:520px;left:22%;bottom:-24%;background:radial-gradient(circle, rgba(252,148,118,.26) 0%, transparent 80%);animation:intro-orb-float 14s ease-in-out infinite 2s}
+.intro-hero-inner-video{position:relative;z-index:2;width:100%;height:100svh;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,4vw,36px)}
+.intro-portrait-stage{position:relative;width:min(92vw,1180px);height:min(88svh,920px);display:flex;align-items:flex-end;justify-content:center}
+.intro-portrait-stage-3d{align-items:center}
+.character-scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.intro-character-canvas{width:100%;height:100%}
+.intro-character-canvas canvas{width:100%!important;height:100%!important}
+.intro-portrait-wrap{position:relative;width:min(78vw,720px);height:100%;display:flex;align-items:flex-end;justify-content:center;perspective:2000px;transform-style:preserve-3d}
+.intro-portrait-glow{position:absolute;inset:auto 16% -18% 16%;height:32%;border-radius:50%;background:radial-gradient(ellipse, rgba(248,238,232,.28) 0%, rgba(208,74,58,.24) 46%, transparent 78%);filter:blur(68px);will-change:transform;pointer-events:none}
+.intro-portrait-glow-soft{position:absolute;inset:6% 14% -10% 14%;border-radius:50%;background:radial-gradient(circle, rgba(248,238,232,.14) 0%, transparent 72%);filter:blur(86px);pointer-events:none}
+.intro-portrait-transform{position:relative;z-index:2;width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;transform-style:preserve-3d;will-change:transform}
+.intro-portrait-enter{width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;opacity:0;transform:translate3d(0,44px,0) scale(1.08);filter:blur(10px);will-change:transform,opacity,filter}
+.intro-hero.is-entered .intro-portrait-enter{animation:intro-portrait-enter 1.25s cubic-bezier(.16,.86,.28,1) forwards}
+.intro-portrait{position:relative;width:auto;height:100%;max-height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 100px 210px rgba(12,3,2,.78));user-select:none;pointer-events:none;will-change:transform}
+.intro-hero.is-entered .intro-portrait{animation:intro-portrait-breathe 4.8s ease-in-out 1.25s infinite}
+.intro-character-text{position:absolute;left:50%;bottom:clamp(10%,16vw,22%);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;z-index:3;pointer-events:none;text-shadow:0 40px 90px rgba(12,3,2,.8)}
+.intro-char-line{font:700 clamp(52px,12vw,168px)/.8 "Oswald";letter-spacing:-.05em;text-transform:uppercase;opacity:0;transform:translate3d(0,26px,0);filter:blur(6px)}
+.intro-hero.is-entered .intro-char-line-1{animation:intro-char-reveal .9s cubic-bezier(.16,.86,.28,1) .6s forwards}
+.intro-hero.is-entered .intro-char-line-2{animation:intro-char-reveal .9s cubic-bezier(.16,.86,.28,1) .8s forwards}
+.intro-explore-centered{position:absolute;bottom:clamp(6%,10vw,14%);left:50%;transform:translateX(-50%);margin:0;z-index:4}
+.intro-explore{display:inline-flex;align-items:center;gap:14px;width:max-content;padding:14px 36px;border:1px solid rgba(243,238,229,.88);border-radius:999px;background:transparent;color:var(--cream);font-size:11px;letter-spacing:.66em;text-transform:uppercase;transition:background-color .3s ease,color .3s ease,box-shadow .3s ease,transform .3s ease}
+.intro-explore:hover{background:var(--cream);color:var(--dark);box-shadow:0 44px 84px rgba(14,4,3,.56);transform:translateX(-50%) translateY(-2px)}
+.intro-explore-centered:hover{transform:translateX(-50%) translateY(-2px)}
+.intro-explore-arrow{animation:intro-arrow 2.6s ease-in-out infinite}
+.intro-scroll-indicator{position:absolute;bottom:clamp(3%,6vw,8%);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;color:rgba(243,238,229,.56);font-size:9px;letter-spacing:.6em;text-transform:uppercase;z-index:2;pointer-events:none}
+.intro-scroll-line{width:1px;height:58px;background:linear-gradient(180deg, transparent, rgba(243,238,229,.88), transparent)}
+.intro-reveal{opacity:0;transform:translate3d(0,22px,0);filter:blur(4px)}
+.intro-hero.is-entered .intro-reveal-5{animation:intro-text-reveal .9s cubic-bezier(.16,.86,.28,1) 1.1s forwards}
+@keyframes intro-portrait-enter{0%{opacity:0;transform:translate3d(0,48px,0) scale(1.08);filter:blur(12px)}100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
+@keyframes intro-portrait-breathe{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-4px,0) scale(1.006)}}
+@keyframes intro-char-reveal{0%{opacity:0;transform:translate3d(0,28px,0);filter:blur(8px)}100%{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}}
+@keyframes intro-text-reveal{0%{opacity:0;transform:translate3d(0,22px,0);filter:blur(4px)}100%{opacity:1;transform:translate3d(-50%,0,0);filter:blur(0)}}
+@keyframes intro-arrow{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+@media(max-width:1080px){.intro-portrait-stage{height:min(86svh,880px)}.intro-portrait-wrap{width:min(84vw,640px)}.intro-char-line{font-size:clamp(48px,16vw,140px)}}
+@media(max-width:720px){.intro-portrait-stage{height:min(84svh,820px)}.intro-portrait-wrap{width:min(90vw,520px)}.intro-char-line{font-size:clamp(44px,20vw,110px)}.intro-explore-centered{bottom:clamp(8%,14vw,18%)}.intro-scroll-indicator{bottom:clamp(4%,8vw,10%)}}
+@media(prefers-reduced-motion:reduce){.intro-hero.is-entered .intro-portrait-enter,.intro-hero.is-entered .intro-portrait,.intro-hero.is-entered .intro-char-line-1,.intro-hero.is-entered .intro-char-line-2,.intro-hero.is-entered .intro-reveal-5{animation:none;opacity:1;transform:none;filter:none}.intro-explore-arrow{animation:none}.intro-portrait-transform,.intro-portrait-glow,.intro-hero-orb{transform:none!important}.intro-explore-centered{transform:translateX(-50%)}}
+
 /* Hero focus areas replace the former CTA buttons */
 .hero-focus{display:flex;flex-wrap:wrap;gap:14px 34px;margin:27px 0 20px;padding:19px 0 17px;border-top:1px solid rgba(243,238,229,.28);border-bottom:1px solid rgba(243,238,229,.28)}
 .hero-focus span{font-size:12px;font-weight:500;line-height:1.4;letter-spacing:1.45px;text-transform:uppercase;color:var(--cream);white-space:nowrap}
