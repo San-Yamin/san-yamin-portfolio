@@ -1,5 +1,4 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { CharacterScene } from "./components/CharacterScene";
 
 const projects = [
   { title:"ATM Workload Analytics", category:"Performance Analysis", year:"2026", image:null, imageFile:"project-atm-workload.jpg", description:"Analyzed 300,000 synthetic ATM transactions and modeled normal and suspicious workloads through an interactive Streamlit dashboard.", tags:["Python","Streamlit","KMeans","PCA"] },
@@ -214,59 +213,10 @@ function Header({ menuOpen, setMenuOpen }) {
   return <header className={`nav-wrap${scrolled?" scrolled":""}`}><button className="monogram" onClick={()=>navigateTo("/")} aria-label="San Yamin home">SY<span>®</span></button><nav className={menuOpen?"nav-links open":"nav-links"} aria-label="Main navigation"><button onClick={()=>navigateTo("/")}>Home</button><button onClick={()=>go("#leadership")}>Leadership</button><button onClick={()=>navigateTo("/international-experiences")}>Exchanges</button><button onClick={()=>navigateTo("/projects")}>Projects</button><button onClick={()=>go("#experience")}>Experience</button><button onClick={()=>go("#contact")}>Contact</button></nav><button className="menu" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={()=>setMenuOpen(!menuOpen)}><span/><span/></button></header>;
 }
 
-function IntroHero() {
-  const [entered, setEntered] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setEntered(true), 30);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const scrollToHome = () => {
-    const el = document.getElementById("top");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
-    }
-  };
-
-  return (
-    <section className={`intro-hero intro-hero-video intro-hero-3d${entered ? " is-entered" : ""}`} aria-label="Introduction">
-      <div className="intro-hero-bg" aria-hidden="true">
-        <div className="intro-hero-gradient intro-hero-gradient-3d" />
-        <div className="intro-hero-orb intro-hero-orb-one" />
-        <div className="intro-hero-orb intro-hero-orb-two" />
-        <div className="intro-hero-orb intro-hero-orb-three" />
-      </div>
-      <div className="intro-hero-inner intro-hero-inner-video">
-        <div className="intro-portrait-stage intro-portrait-stage-3d">
-          <CharacterScene modelPath="/models/san-yamin-character.glb" className="intro-character-canvas" />
-          <div className="intro-character-text">
-            <span className="intro-char-line intro-char-line-1">Hi, I'm</span>
-            <span className="intro-char-line intro-char-line-2">San Yamin</span>
-          </div>
-        </div>
-        <button className="intro-explore intro-explore-centered intro-reveal intro-reveal-5" onClick={scrollToHome} aria-label="Explore Portfolio">
-          <span>Explore Portfolio</span>
-          <svg className="intro-explore-arrow" viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M6 2v8M2 6l4 4 4-4" />
-          </svg>
-        </button>
-      </div>
-      <div className="intro-scroll-indicator" aria-hidden="true">
-        <span>Scroll</span>
-        <div className="intro-scroll-line" />
-      </div>
-    </section>
-  );
-}
-
 function Home() {
   const [preview, setPreview] = useState(null);
   const openAchievement = () => navigateTo("/achievements");
   return <>
-    <IntroHero />
     <section id="top" className="hero"><div className="hero-copy"><div className="hero-focus hero-focus-top" aria-label="Focus areas">{["Cybersecurity","AI & ML","Digital Trust","Social Impact","Global Collaboration"].map(item=><span key={item}>{item}</span>)}</div><h1>San<br/>Yamin<span>.</span></h1><p className="intro">I’m San Yamin from Myanmar, working at the intersection of cybersecurity, AI, digital trust, and youth empowerment. As a cybersecurity student, researcher, content creator, and tech builder, I combine technical problem-solving with visual storytelling to make technology safer, more responsible, and more accessible. Through research, technical projects, Aspire Now, and SanSan’s Yellow Notebook, I share opportunities and experiences while building digital solutions that can create meaningful impact for young people and communities.</p><div className="hero-links"><a className="text-link" href="https://www.linkedin.com/in/san-yamin-18b781307" target="_blank" rel="noreferrer">LinkedIn <ExternalArrow /></a><a className="text-link" href="https://github.com/San-Yamin" target="_blank" rel="noreferrer">GitHub <ExternalArrow /></a><a className="text-link" href="/images-to-add/CV_San_Yamin.pdf" download>Download CV <ExternalArrow /></a></div></div><div className="hero-visual-wrap"><span className="hero-word" aria-hidden="true">Portfolio</span><figure className="hero-visual"><div className="hero-image-frame"><picture><source type="image/webp" srcSet="/assets/portrait-hero.webp"/><img src="/assets/portrait-hero.jpg" alt="San Yamin" fetchPriority="high" decoding="async"/></picture></div><figcaption className="portrait-label">Yangon, Myanmar</figcaption></figure></div></section>
 
     <section className="section cream education education-editorial"><div className="section-inner education-editorial-layout"><div className="education-accent" aria-hidden="true"><span className="script">Education</span><strong>UIT</strong></div><div className="education-details"><span className="label">Current education</span><h2>University of Information Technology <a className="education-site-link" href="https://uit.edu.mm/" target="_blank" rel="noreferrer" aria-label="Visit the University of Information Technology website"><ExternalArrow /></a></h2><p className="education-location">Yangon, Myanmar</p><div className="education-meta"><p><strong>B.C.Tech in Computer Technology</strong></p><p>Specialization: <strong>Cybersecurity</strong></p><time>2022 — Present</time></div><div className="academic-focus"><span className="label">Academic Focus</span><p>Cybersecurity · Artificial Intelligence · Information Systems · Software Development</p></div></div></div></section>
