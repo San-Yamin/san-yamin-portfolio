@@ -216,12 +216,19 @@ function CertificateGallery({ items }) {
   return (
     <section className="certificate-compact">
       <div className="section-inner">
+        <div className="certificate-compact-header reveal">
+          <div>
+            <span className="script">Certificates</span>
+            <h2>Certificates</h2>
+          </div>
+        </div>
         <div className="certificate-compact-grid">
           {items.slice(0, 4).map((item, i) => (
             <article key={item.id} className="certificate-compact-item reveal-fade" style={{"--rd":`${i*50}ms`}} onClick={() => setSelected(item)} tabIndex="0" role="button" aria-label={`View ${item.title} certificate`} onKeyDown={e => { if(e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelected(item); } }}>
               <div className="certificate-compact-frame">
                 <img src={`/images-to-add/${item.imageFile}`} alt={`${item.title} certificate`} loading="lazy" />
               </div>
+              <p className="certificate-compact-title">{item.title}</p>
             </article>
           ))}
         </div>
