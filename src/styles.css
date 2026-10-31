@@ -407,7 +407,7 @@ img[src$="achievement-unesco-hackathon-01.jpg"]{object-fit:contain;padding:18px;
 .certificate-compact-item:hover{transform:translateY(-4px)}
 .certificate-compact-frame{overflow:hidden}
 .certificate-compact-frame img{width:100%;height:auto;display:block;object-fit:contain;box-shadow:0 12px 28px rgba(38,26,23,.14)}
-.certificate-compact-title{margin:0;text-align:center;font-size:10px;line-height:1.4;letter-spacing:.6px;text-transform:uppercase;opacity:.8;padding:0 4px}
+.certificate-compact-title{margin:0;text-align:center;font-size:9px;line-height:1.5;letter-spacing:.5px;text-transform:uppercase;opacity:.75;padding:0 2px;word-break:break-word}
 .certificate-lightbox{position:fixed;inset:0;background:rgba(20,6,5,.88);display:flex;align-items:center;justify-content:center;padding:20px;z-index:80}
 .certificate-lightbox-close{position:absolute;top:16px;right:22px;border:0;background:none;font-size:36px;color:var(--cream);cursor:pointer;z-index:2}
 .certificate-lightbox-content{position:relative;max-width:900px;width:100%;max-height:90vh;overflow:auto;display:flex;flex-direction:column;gap:16px;align-items:center}
