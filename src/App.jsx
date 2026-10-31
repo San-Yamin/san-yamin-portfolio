@@ -55,10 +55,10 @@ const universityFeatures = [
 ];
 
 const achievements = [
+  { slug:"youth-entrepreneurship-program", type:"Program", date:"May 2024", title:"Youth Entrepreneurship Program", role:"Pitch Deck Competition", description:"Won second prize with a team business idea focused on sustainability.", gallery:[{file:"achievement-youth-entrepreneurship-01.jpg"},{file:"achievement-youth-entrepreneurship-02.jpg"},{file:"achievement-youth-entrepreneurship-03.jpg"},{file:"achievement-youth-entrepreneurship-04.jpg"}] },
   { slug:"kbzpay-appcube-hackathon", type:"Hackathon", date:"March 2026", title:"KBZPay AppCube Hackathon", role:"Best Mini App Award · 2nd Place (1st Runner-Up)", description:"Led the team behind “EverAfter,” a mini app built on the KBZPay AppCube platform.", gallery:[{file:"achievement-kbzpay-hackathon-01.jpg"},{file:"achievement-kbzpay-hackathon-02.jpg"},{file:"achievement-kbzpay-hackathon-03.jpg"},{file:"achievement-kbzpay-hackathon-04.jpg"}] },
   { slug:"unesco-youth-hackathon", type:"Hackathon", date:"October 2025", title:"UNESCO Youth Hackathon", role:"Media & Information Literacy", description:"Contributed “CyberBuddy,” a youth-focused media and information literacy project.", gallery:[{file:"achievement-unesco-hackathon-01.jpg"}] },
   { slug:"green-talent-generation-hackathon", type:"Hackathon", date:"July 2024", title:"Green Talent Generation Hackathon", role:"Thailand · Sustainability", description:"Contributed to a technology project supporting sustainable practices.", gallery:[{file:"achievement-green-talent-01.jpg"}] },
-  { slug:"youth-entrepreneurship-program", type:"Program", date:"May 2024", title:"Youth Entrepreneurship Program", role:"Pitch Deck Competition", description:"Won second prize with a team business idea focused on sustainability.", gallery:[{file:"achievement-youth-entrepreneurship-01.jpg"},{file:"achievement-youth-entrepreneurship-02.jpg"},{file:"achievement-youth-entrepreneurship-03.jpg"},{file:"achievement-youth-entrepreneurship-04.jpg"}] },
 ];
 if("scrollRestoration" in history) history.scrollRestoration="manual";
 
@@ -189,7 +189,13 @@ function UniversityPage() {
 }
 
 function AchievementsPage() {
-  return <main className="subpage cream achievements-page"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Selected highlights</span><p className="kicker">Hackathons · Awards · Programs</p><h1>Achievements.</h1><p>Hackathons, awards, and programs where I contributed — from building award-winning mini apps to youth-focused technology and sustainability projects.</p></div></section><div className="experience-showcase">{achievements.map((x,i)=><section id={x.slug} className={`experience-feature${i % 2 ? " reverse" : ""}`} key={x.slug}><div className="section-inner"><div className="experience-feature-copy reveal"><div className="experience-feature-meta"><span>0{i + 1} · {x.type}</span><span>{x.date}</span></div><h2>{x.title}</h2><p className="experience-role">{x.role}</p><p>{x.description}</p></div><div className={`experience-gallery reveal${x.gallery.length === 1 ? " single" : ""}`}>{x.gallery.map((photo,j)=><figure className={j === 0 && x.gallery.length > 1 ? "lead-photo" : ""} key={photo.src || photo.file}><ImageSlot src={photo.src} file={photo.file} alt={`${x.title} photo ${j + 1}`} /></figure>)}</div></div></section>)}</div></main>;
+  const order = ["youth-entrepreneurship-program", "kbzpay-appcube-hackathon", "unesco-youth-hackathon", "green-talent-generation-hackathon"];
+  const items = order.map(slug => achievements.find(a => a.slug === slug)).filter(Boolean);
+  return <main className="subpage cream achievements-page"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Selected highlights</span><p className="kicker">Hackathons · Awards · Programs</p><h1>Achievements.</h1><p>Hackathons, awards, and programs where I contributed — from building award-winning mini apps to youth-focused technology and sustainability projects.</p></div></section><div className="experience-showcase">{items.map((x,i)=>{
+    const isCompact = x.slug === "unesco-youth-hackathon" || x.slug === "green-talent-generation-hackathon";
+    const isFull = x.slug === "youth-entrepreneurship-program" || x.slug === "kbzpay-appcube-hackathon";
+    return <section id={x.slug} className={`experience-feature${i % 2 ? " reverse" : ""}${isCompact ? " achievement-compact" : ""}`} key={x.slug}><div className="section-inner"><div className="experience-feature-copy reveal"><div className="experience-feature-meta"><span>0{i + 1} · {x.type}</span><span>{x.date}</span></div><h2>{x.title}</h2><p className="experience-role">{x.role}</p>{isFull && x.description && <p>{x.description}</p>}</div><div className={`experience-gallery reveal${x.gallery.length === 1 ? " single" : ""}`}>{x.gallery.map((photo,j)=><figure className={j === 0 && x.gallery.length > 1 && isFull ? "lead-photo" : ""} key={photo.src || photo.file}><ImageSlot src={photo.src} file={photo.file} alt={`${x.title} photo ${j + 1}`} /></figure>)}</div></div></section>
+  })}</div></main>;
 }
 
 function ExchangeCard({ item, index }) {
@@ -237,6 +243,7 @@ function Home() {
     {preview && <ProjectLightbox project={preview.project} rect={preview.rect} onClose={()=>setPreview(null)}/>}
   </>;
 }
+
 function ProjectsPage() {
   const [preview, setPreview] = useState(null);
   return <main className="subpage cream projects-page"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Selected work</span><p className="kicker">Technical portfolio</p><h1>Projects.</h1><p>A selected collection of projects across cybersecurity, AI, databases, web development, and engineering.</p></div></section><section id="projects" className="section"><div className="section-inner"><div className="card-grid">{projects.map((p,i)=><ProjectCard project={p} index={i} key={p.title} onPreview={(project,rect)=>setPreview({project,rect})}/>)}</div></div></section>{preview && <ProjectLightbox project={preview.project} rect={preview.rect} onClose={()=>setPreview(null)}/>}</main>;
