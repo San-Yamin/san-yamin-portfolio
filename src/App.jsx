@@ -55,13 +55,15 @@ const universityFeatures = [
 ];
 
 const achievements = [
-  { slug:"kbzpay-appcube-hackathon", type:"Hackathon", category:"Hackathon", date:"March 2026", title:"KBZPay AppCube Hackathon", organization:"KBZPay", role:"Best Mini App Award · 2nd Place (1st Runner-Up)", description:"Led the team behind “EverAfter,” a mini app built on the KBZPay AppCube platform.", gallery:[{file:"achievement-kbzpay-hackathon-01.jpg"},{file:"achievement-kbzpay-hackathon-02.jpg"},{file:"achievement-kbzpay-hackathon-03.jpg"},{file:"achievement-kbzpay-hackathon-04.jpg"}] },
-  { slug:"youth-entrepreneurship-program", type:"Program", category:"Program", date:"May 2024", title:"Youth Entrepreneurship Program", organization:"Youth Entrepreneurship Program", role:"Pitch Deck Competition", description:"Won second prize with a team business idea focused on sustainability.", gallery:[{file:"achievement-youth-entrepreneurship-01.jpg"},{file:"achievement-youth-entrepreneurship-02.jpg"},{file:"achievement-youth-entrepreneurship-03.jpg"},{file:"achievement-youth-entrepreneurship-04.jpg"}] },
+  { slug:"kbzpay-appcube-hackathon", type:"Hackathon", date:"March 2026", title:"KBZPay AppCube Hackathon", role:"Best Mini App Award · 2nd Place (1st Runner-Up)", description:"Led the team behind “EverAfter,” a mini app built on the KBZPay AppCube platform.", gallery:[{file:"achievement-kbzpay-hackathon-01.jpg"},{file:"achievement-kbzpay-hackathon-02.jpg"},{file:"achievement-kbzpay-hackathon-03.jpg"},{file:"achievement-kbzpay-hackathon-04.jpg"}] },
+  { slug:"youth-entrepreneurship-program", type:"Program", date:"May 2024", title:"Youth Entrepreneurship Program", role:"Pitch Deck Competition", description:"Won second prize with a team business idea focused on sustainability.", gallery:[{file:"achievement-youth-entrepreneurship-01.jpg"},{file:"achievement-youth-entrepreneurship-02.jpg"},{file:"achievement-youth-entrepreneurship-03.jpg"},{file:"achievement-youth-entrepreneurship-04.jpg"}] },
+  { slug:"unesco-youth-hackathon", type:"Hackathon", date:"October 2025", title:"UNESCO Youth Hackathon", role:"Media & Information Literacy", description:"Contributed “CyberBuddy,” a youth-focused media and information literacy project.", gallery:[{file:"achievement-unesco-hackathon-01.jpg"}] },
+  { slug:"green-talent-generation-hackathon", type:"Hackathon", date:"July 2024", title:"Green Talent Generation Hackathon", role:"Thailand · Sustainability", description:"Contributed to a technology project supporting sustainable practices.", gallery:[{file:"achievement-green-talent-01.jpg"}] },
 ];
 
 const certificates = [
-  { id:"unesco", type:"Certificate", category:"Hackathon", date:"October 2025", title:"UNESCO Youth Hackathon", organization:"UNESCO", imageFile:"achievement-unesco-hackathon-01.jpg", role:"Media & Information Literacy" },
-  { id:"green-talent", type:"Certificate", category:"Hackathon", date:"July 2024", title:"Green Talent Generation Hackathon", organization:"Green Talent Generation", imageFile:"achievement-green-talent-01.jpg", role:"Thailand · Sustainability" },
+  { id:"unesco", category:"Hackathon", date:"October 2025", title:"UNESCO Youth Hackathon", organization:"UNESCO", imageFile:"achievement-unesco-hackathon-01.jpg", role:"Media & Information Literacy" },
+  { id:"green-talent", category:"Hackathon", date:"July 2024", title:"Green Talent Generation Hackathon", organization:"Green Talent Generation", imageFile:"achievement-green-talent-01.jpg", role:"Thailand · Sustainability" },
 ];
 if("scrollRestoration" in history) history.scrollRestoration="manual";
 
@@ -192,10 +194,7 @@ function UniversityPage() {
 }
 
 function CertificateGallery({ items }) {
-  const [filter, setFilter] = useState("All");
   const [selected, setSelected] = useState(null);
-  const categories = ["All", ...Array.from(new Set(items.map(item => item.category).filter(Boolean)))];
-  const filtered = filter === "All" ? items : items.filter(item => item.category === filter);
 
   useEffect(() => {
     if (selected) {
@@ -206,36 +205,28 @@ function CertificateGallery({ items }) {
     return () => { document.body.style.overflow = ""; };
   }, [selected]);
 
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") setSelected(null); };
+    if (selected) addEventListener("keydown", onKey);
+    return () => removeEventListener("keydown", onKey);
+  }, [selected]);
+
+  if (!items || items.length === 0) return null;
+
   return (
-    <section className="certificate-gallery-section">
+    <section className="certificate-compact">
       <div className="section-inner">
-        <div className="certificate-gallery-header reveal">
+        <div className="certificate-compact-header reveal">
           <div>
             <span className="script">Certificates</span>
-            <h2>Certificate Gallery</h2>
-            <p>Certificates and recognitions from hackathons and programs.</p>
+            <h2>Certificates</h2>
           </div>
         </div>
-        <div className="certificate-filters reveal">
-          {categories.map(cat => (
-            <button key={cat} className={`certificate-filter${filter === cat ? " active" : ""}`} onClick={() => setFilter(cat)}>{cat}</button>
-          ))}
-        </div>
-        <div className="certificate-grid">
-          {filtered.map((item, i) => (
-            <article key={item.id} className="certificate-card reveal-fade" style={{"--rd":`${i*60}ms`}} onClick={() => setSelected(item)} tabIndex="0" role="button" aria-label={`View ${item.title} certificate`} onKeyDown={e => { if(e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelected(item); } }}>
-              <div className="certificate-thumb">
-                <ImageSlot file={item.imageFile} alt={`${item.title} certificate`} />
-                <div className="certificate-overlay"><span>View certificate</span></div>
-              </div>
-              <div className="certificate-card-body">
-                <div className="certificate-meta">
-                  <span>{item.category || item.type}</span>
-                  <span>{item.date}</span>
-                </div>
-                <h3>{item.title}</h3>
-                <p className="certificate-org">{item.organization}</p>
-                {item.role && <p className="certificate-role">{item.role}</p>}
+        <div className="certificate-compact-grid">
+          {items.slice(0, 4).map((item, i) => (
+            <article key={item.id} className="certificate-compact-item reveal-fade" style={{"--rd":`${i*50}ms`}} onClick={() => setSelected(item)} tabIndex="0" role="button" aria-label={`View ${item.title} certificate`} onKeyDown={e => { if(e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelected(item); } }}>
+              <div className="certificate-compact-frame">
+                <img src={`/images-to-add/${item.imageFile}`} alt={`${item.title} certificate`} loading="lazy" />
               </div>
             </article>
           ))}
