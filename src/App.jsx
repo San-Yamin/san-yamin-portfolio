@@ -62,8 +62,8 @@ const achievements = [
 ];
 
 const certificates = [
-  { id:"unesco", category:"Hackathon", date:"October 2025", title:"UNESCO Youth Hackathon", organization:"UNESCO", imageFile:"achievement-unesco-hackathon-01.jpg", role:"Media & Information Literacy" },
-  { id:"green-talent", category:"Hackathon", date:"July 2024", title:"Green Talent Generation Hackathon", organization:"Green Talent Generation", imageFile:"achievement-green-talent-01.jpg", role:"Thailand · Sustainability" },
+  { id:"unesco", category:"Hackathon", date:"October 2025", title:"Certificate of Participation - UNESCO Youth Hackathon", organization:"UNESCO", imageFile:"achievement-unesco-hackathon-01.jpg", role:"Media & Information Literacy" },
+  { id:"green-talent", category:"Hackathon", date:"July 2024", title:"Certificate of Participation - Green Talent Generation Hackathon", organization:"Green Talent Generation", imageFile:"achievement-green-talent-01.jpg", role:"Thailand · Sustainability" },
 ];
 if("scrollRestoration" in history) history.scrollRestoration="manual";
 
@@ -228,6 +228,7 @@ function CertificateGallery({ items }) {
               <div className="certificate-compact-frame">
                 <img src={`/images-to-add/${item.imageFile}`} alt={`${item.title} certificate`} loading="lazy" />
               </div>
+              <p className="certificate-compact-title">{item.title}</p>
             </article>
           ))}
         </div>
