@@ -55,10 +55,13 @@ const universityFeatures = [
 ];
 
 const achievements = [
-  { slug:"kbzpay-appcube-hackathon", type:"Hackathon", date:"March 2026", title:"KBZPay AppCube Hackathon", role:"Best Mini App Award · 2nd Place (1st Runner-Up)", description:"Led the team behind “EverAfter,” a mini app built on the KBZPay AppCube platform.", gallery:[{file:"achievement-kbzpay-hackathon-01.jpg"},{file:"achievement-kbzpay-hackathon-02.jpg"},{file:"achievement-kbzpay-hackathon-03.jpg"},{file:"achievement-kbzpay-hackathon-04.jpg"}] },
-  { slug:"youth-entrepreneurship-program", type:"Program", date:"May 2024", title:"Youth Entrepreneurship Program", role:"Pitch Deck Competition", description:"Won second prize with a team business idea focused on sustainability.", gallery:[{file:"achievement-youth-entrepreneurship-01.jpg"},{file:"achievement-youth-entrepreneurship-02.jpg"},{file:"achievement-youth-entrepreneurship-03.jpg"},{file:"achievement-youth-entrepreneurship-04.jpg"}] },
-  { slug:"unesco-youth-hackathon", type:"Hackathon", date:"October 2025", title:"UNESCO Youth Hackathon", role:"Media & Information Literacy", description:"Contributed “CyberBuddy,” a youth-focused media and information literacy project.", gallery:[{file:"achievement-unesco-hackathon-01.jpg"}] },
-  { slug:"green-talent-generation-hackathon", type:"Hackathon", date:"July 2024", title:"Green Talent Generation Hackathon", role:"Thailand · Sustainability", description:"Contributed to a technology project supporting sustainable practices.", gallery:[{file:"achievement-green-talent-01.jpg"}] },
+  { slug:"kbzpay-appcube-hackathon", type:"Hackathon", category:"Hackathon", date:"March 2026", title:"KBZPay AppCube Hackathon", organization:"KBZPay", role:"Best Mini App Award · 2nd Place (1st Runner-Up)", description:"Led the team behind “EverAfter,” a mini app built on the KBZPay AppCube platform.", gallery:[{file:"achievement-kbzpay-hackathon-01.jpg"},{file:"achievement-kbzpay-hackathon-02.jpg"},{file:"achievement-kbzpay-hackathon-03.jpg"},{file:"achievement-kbzpay-hackathon-04.jpg"}] },
+  { slug:"youth-entrepreneurship-program", type:"Program", category:"Program", date:"May 2024", title:"Youth Entrepreneurship Program", organization:"Youth Entrepreneurship Program", role:"Pitch Deck Competition", description:"Won second prize with a team business idea focused on sustainability.", gallery:[{file:"achievement-youth-entrepreneurship-01.jpg"},{file:"achievement-youth-entrepreneurship-02.jpg"},{file:"achievement-youth-entrepreneurship-03.jpg"},{file:"achievement-youth-entrepreneurship-04.jpg"}] },
+];
+
+const certificates = [
+  { id:"unesco", type:"Certificate", category:"Hackathon", date:"October 2025", title:"UNESCO Youth Hackathon", organization:"UNESCO", imageFile:"achievement-unesco-hackathon-01.jpg", role:"Media & Information Literacy" },
+  { id:"green-talent", type:"Certificate", category:"Hackathon", date:"July 2024", title:"Green Talent Generation Hackathon", organization:"Green Talent Generation", imageFile:"achievement-green-talent-01.jpg", role:"Thailand · Sustainability" },
 ];
 if("scrollRestoration" in history) history.scrollRestoration="manual";
 
@@ -188,14 +191,79 @@ function UniversityPage() {
   return <main className="subpage cream university-detail"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Campus life</span><p className="kicker">University of Information Technology · Yangon</p><h1>University activities.</h1><p>Roles, volunteering, and community involvement alongside my studies at UIT — from managing a club's finances to representing the student body.</p></div></section><div className="experience-showcase">{universityFeatures.map((x,i)=><section id={x.slug} className={`experience-feature${i % 2 ? " reverse" : ""}`} key={x.slug}><div className="section-inner"><div className="experience-feature-copy reveal"><div className="experience-feature-meta"><span>0{i + 1} · {x.type}</span><span>{x.place}</span></div><h2>{x.title}</h2><p className="experience-role">{x.role}</p>{x.paragraphs.map(p=><p key={p}>{p}</p>)}</div><div className={`experience-gallery reveal${x.gallery.length === 1 ? " single" : ""}`}>{x.gallery.map((photo,j)=><figure className={j === 0 && x.gallery.length > 1 ? "lead-photo" : ""} key={photo.file}><ImageSlot file={photo.file} alt={`${x.title} photo ${j + 1}`}/></figure>)}</div></div></section>)}</div></main>;
 }
 
+function CertificateGallery({ items }) {
+  const [filter, setFilter] = useState("All");
+  const [selected, setSelected] = useState(null);
+  const categories = ["All", ...Array.from(new Set(items.map(item => item.category).filter(Boolean)))];
+  const filtered = filter === "All" ? items : items.filter(item => item.category === filter);
+
+  useEffect(() => {
+    if (selected) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [selected]);
+
+  return (
+    <section className="certificate-gallery-section">
+      <div className="section-inner">
+        <div className="certificate-gallery-header reveal">
+          <div>
+            <span className="script">Certificates</span>
+            <h2>Certificate Gallery</h2>
+            <p>Certificates and recognitions from hackathons and programs.</p>
+          </div>
+        </div>
+        <div className="certificate-filters reveal">
+          {categories.map(cat => (
+            <button key={cat} className={`certificate-filter${filter === cat ? " active" : ""}`} onClick={() => setFilter(cat)}>{cat}</button>
+          ))}
+        </div>
+        <div className="certificate-grid">
+          {filtered.map((item, i) => (
+            <article key={item.id} className="certificate-card reveal-fade" style={{"--rd":`${i*60}ms`}} onClick={() => setSelected(item)} tabIndex="0" role="button" aria-label={`View ${item.title} certificate`} onKeyDown={e => { if(e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelected(item); } }}>
+              <div className="certificate-thumb">
+                <ImageSlot file={item.imageFile} alt={`${item.title} certificate`} />
+                <div className="certificate-overlay"><span>View certificate</span></div>
+              </div>
+              <div className="certificate-card-body">
+                <div className="certificate-meta">
+                  <span>{item.category || item.type}</span>
+                  <span>{item.date}</span>
+                </div>
+                <h3>{item.title}</h3>
+                <p className="certificate-org">{item.organization}</p>
+                {item.role && <p className="certificate-role">{item.role}</p>}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+      {selected && (
+        <div className="certificate-lightbox" role="dialog" aria-modal="true" aria-label={`${selected.title} certificate`} onClick={() => setSelected(null)}>
+          <button className="certificate-lightbox-close" onClick={() => setSelected(null)} aria-label="Close certificate">×</button>
+          <div className="certificate-lightbox-content" onClick={e => e.stopPropagation()}>
+            <img src={`/images-to-add/${selected.imageFile}`} alt={`${selected.title} certificate full size`} />
+            <div className="certificate-lightbox-caption">
+              <strong>{selected.title}</strong>
+              <span>{selected.organization} · {selected.date}</span>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
 function AchievementsPage() {
-  const order = ["kbzpay-appcube-hackathon", "youth-entrepreneurship-program", "unesco-youth-hackathon", "green-talent-generation-hackathon"];
+  const order = ["kbzpay-appcube-hackathon", "youth-entrepreneurship-program"];
   const items = order.map(slug => achievements.find(a => a.slug === slug)).filter(Boolean);
   return <main className="subpage cream achievements-page"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Selected highlights</span><p className="kicker">Hackathons · Awards · Programs</p><h1>Achievements.</h1><p>Hackathons, awards, and programs where I contributed — from building award-winning mini apps to youth-focused technology and sustainability projects.</p></div></section><div className="experience-showcase">{items.map((x,i)=>{
-    const isCompact = x.slug === "unesco-youth-hackathon" || x.slug === "green-talent-generation-hackathon";
     const isFull = x.slug === "youth-entrepreneurship-program" || x.slug === "kbzpay-appcube-hackathon";
-    return <section id={x.slug} className={`experience-feature${i % 2 ? " reverse" : ""}${isCompact ? " achievement-compact" : ""}`} key={x.slug}><div className="section-inner"><div className="experience-feature-copy reveal"><div className="experience-feature-meta"><span>0{i + 1} · {x.type}</span><span>{x.date}</span></div><h2>{x.title}</h2><p className="experience-role">{x.role}</p>{isFull && x.description && <p>{x.description}</p>}</div><div className={`experience-gallery reveal${x.gallery.length === 1 ? " single" : ""}`}>{x.gallery.map((photo,j)=><figure className={j === 0 && x.gallery.length > 1 && isFull ? "lead-photo" : ""} key={photo.src || photo.file}><ImageSlot src={photo.src} file={photo.file} alt={`${x.title} photo ${j + 1}`} /></figure>)}</div></div></section>
-  })}</div></main>;
+    return <section id={x.slug} className={`experience-feature${i % 2 ? " reverse" : ""}`} key={x.slug}><div className="section-inner"><div className="experience-feature-copy reveal"><div className="experience-feature-meta"><span>0{i + 1} · {x.type}</span><span>{x.date}</span></div><h2>{x.title}</h2><p className="experience-role">{x.role}</p>{isFull && x.description && <p>{x.description}</p>}</div><div className={`experience-gallery reveal${x.gallery.length === 1 ? " single" : ""}`}>{x.gallery.map((photo,j)=><figure className={j === 0 && x.gallery.length > 1 && isFull ? "lead-photo" : ""} key={photo.src || photo.file}><ImageSlot src={photo.src} file={photo.file} alt={`${x.title} photo ${j + 1}`} /></figure>)}</div></div></section>
+  })}</div><CertificateGallery items={certificates} /></main>;
 }
 
 function ExchangeCard({ item, index }) {

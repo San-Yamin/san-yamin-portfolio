@@ -388,6 +388,37 @@ img[src$="achievement-kbzpay-hackathon-02.jpg"]{object-position:center 66%}
 img[src$="achievement-green-talent-01.jpg"],
 img[src$="achievement-unesco-hackathon-01.jpg"]{object-fit:contain;padding:18px;background:#f7f1ea}
 
+/* Certificate Gallery */
+.certificate-gallery-section{padding:70px max(5vw,26px) 100px;background:var(--cream)}
+.certificate-gallery-header{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:28px;border-top:1px solid var(--line);padding-top:22px}
+.certificate-gallery-header h2{margin:0;font:600 clamp(38px,5vw,68px)/1 "Oswald";letter-spacing:-.025em;text-transform:uppercase}
+.certificate-gallery-header p{margin:10px 0 0;max-width:620px;opacity:.72}
+.certificate-filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.certificate-filter{border:1px solid rgba(38,26,23,.4);background:transparent;color:var(--dark);padding:9px 16px;font-size:10px;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;transition:background .25s ease,color .25s ease,box-shadow .25s ease}
+.certificate-filter.active,.certificate-filter:hover{background:var(--dark);color:var(--cream);box-shadow:0 20px 40px rgba(38,26,23,.18)}
+.certificate-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.certificate-card{border:1px solid rgba(38,26,23,.18);background:#f8f5f2;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 70px rgba(38,26,23,.12);cursor:pointer;transition:transform .35s cubic-bezier(.2,.75,.25,1),box-shadow .35s cubic-bezier(.2,.75,.25,1);position:relative}
+.certificate-card:hover{transform:translateY(-8px);box-shadow:0 50px 90px rgba(38,26,23,.18)}
+.certificate-thumb{position:relative;overflow:hidden;height:190px}
+.certificate-thumb .image-slot,.certificate-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.certificate-card:hover .certificate-thumb img,.certificate-card:hover .certificate-thumb .image-slot{transform:scale(1.04)}
+.certificate-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, transparent 0%, rgba(38,26,23,.7) 100%);opacity:0;transition:opacity .35s ease}
+.certificate-card:hover .certificate-overlay{opacity:1}
+.certificate-overlay span{color:var(--cream);font-size:10px;letter-spacing:.8px;text-transform:uppercase}
+.certificate-card-body{padding:18px 20px;display:flex;flex-direction:column;gap:8px}
+.certificate-meta{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.8px;text-transform:uppercase;opacity:.7}
+.certificate-card-body h3{margin:0;font:600 20px/1.1 "Oswald";text-transform:uppercase}
+.certificate-org{margin:0;font-size:13px;opacity:.8}
+.certificate-role{margin:0;font-size:11px;text-transform:uppercase;letter-spacing:.6px;opacity:.6}
+.certificate-lightbox{position:fixed;inset:0;background:rgba(20,6,5,.85);display:flex;align-items:center;justify-content:center;padding:20px;z-index:80}
+.certificate-lightbox-close{position:absolute;top:16px;right:22px;border:0;background:none;font-size:36px;color:var(--cream);cursor:pointer;z-index:2}
+.certificate-lightbox-content{position:relative;max-width:900px;width:100%;max-height:90vh;overflow:auto;display:flex;flex-direction:column;gap:16px;align-items:center}
+.certificate-lightbox-content img{width:auto;max-width:100%;max-height:78vh;display:block;box-shadow:0 80px 160px rgba(10,4,3,.7)}
+.certificate-lightbox-caption{color:var(--cream);text-align:center;display:flex;flex-direction:column;gap:6px}
+.certificate-lightbox-caption strong{font:600 22px "Oswald";text-transform:uppercase}
+.certificate-lightbox-caption span{font-size:10px;letter-spacing:.8px;text-transform:uppercase;opacity:.7}
+@media(max-width:760px){.certificate-grid{grid-template-columns:1fr}.certificate-lightbox-content img{max-height:70vh}}
+
 /* Section rule above International Experiences / Technical projects / University Activities: thin burgundy */
 #projects .section-header::before,
 .international-section .section-header::before,
