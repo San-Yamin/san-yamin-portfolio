@@ -133,7 +133,7 @@ function ProjectCard({ project, index=0, featured=false, onPreview }) {
     if (onPreview) { const img = event.currentTarget.querySelector("img"); onPreview(project, img ? img.getBoundingClientRect() : null); }
     else navigateTo("/projects");
   };
-  return <article className={`project-card${featured?" featured":""} reveal-fade`} style={{"--rd":`${Math.min(index,8)*70}ms`}} role="link" tabIndex="0" aria-label={`View project: ${project.title}`} onClick={openProject} onKeyDown={event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openProject(event);}}}><div className="project-image"><ImageSlot src={project.image} file={project.imageFile} alt={project.title} /><span className="project-number" aria-hidden="true">0{index + 1}</span></div><div className="card-body"><div className="meta"><span>{project.category}</span><span>{project.year}</span></div><h3 className="project-title">{project.title}{project.github && <a className="project-github-link" href={project.github} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} on GitHub`} onClick={e=>e.stopPropagation()} onKeyDown={e=>e.stopPropagation()}><ExternalArrow /></a>}</h3><p>{project.description}</p><div className="tags">{project.tags.map(tag=><span key={tag}>{tag}</span>)}</div><span className="project-action" aria-hidden="true"><span className="project-action-icon">→</span></span></div></article>;
+  return <article className={`project-card${featured?" featured":""} reveal-fade`} style={{"--rd":`${Math.min(index,8)*70}ms`}} role="link" tabIndex="0" aria-label={`View project: ${project.title}`} onClick={openProject} onKeyDown={event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openProject(event);}}}><div className="project-image"><ImageSlot src={project.image} file={project.imageFile} alt={project.title} /><span className="project-number" aria-hidden="true">0{index + 1}</span></div><div className="card-body"><div className="meta"><span>{project.category}</span><span>{project.year}</span></div><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.tags.map(tag=><span key={tag}>{tag}</span>)}</div><span className="project-action" aria-hidden="true"><span className="project-action-icon">→</span></span></div></article>;
 }
 
 function ProjectLightbox({ project, rect, onClose }) {
@@ -175,13 +175,25 @@ function ProjectLightbox({ project, rect, onClose }) {
     else el.addEventListener("load", flip, { once: true });
   }, []);
 
-  return <div className={`lightbox${closing ? " closing" : ""}`} role="dialog" aria-modal="true" aria-label={`${project.title} preview`} onClick={close}>
-    <button className="lightbox-close" ref={closeRef} onClick={close} aria-label="Close preview">×</button>
-    <figure className="lightbox-figure" onClick={event => event.stopPropagation()}>
-      <img ref={imgRef} src={src} alt={project.title} />
-      <figcaption className="lightbox-caption"><strong>{project.title}</strong><span>{project.category} · {project.year}</span></figcaption>
-    </figure>
-  </div>;
+  return (
+    <div className={`lightbox${closing ? " closing" : ""}`} role="dialog" aria-modal="true" aria-label={`${project.title} preview`} onClick={close}>
+      <button className="lightbox-close" ref={closeRef} onClick={close} aria-label="Close preview">×</button>
+      <figure className="lightbox-figure" onClick={event => event.stopPropagation()}>
+        <img ref={imgRef} src={src} alt={project.title} />
+        <figcaption className="lightbox-caption">
+          <strong>
+            {project.title}
+            {project.github && (
+              <a className="lightbox-github-inline" href={project.github} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} on GitHub`} onClick={e => e.stopPropagation()}>
+                <ExternalArrow />
+              </a>
+            )}
+          </strong>
+          <span>{project.category} · {project.year}</span>
+        </figcaption>
+      </figure>
+    </div>
+  );
 }
 
 function UniversityCardGrid() {

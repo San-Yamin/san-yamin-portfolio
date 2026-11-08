@@ -159,10 +159,6 @@ a:focus-visible,button:focus-visible{outline:3px solid #efc75e;outline-offset:4p
 .project-card .meta>span:first-child{color:var(--card-accent);font-weight:700}
 .project-card .meta>span:last-child{color:#2a1a17;opacity:.5}
 .project-card h3{min-height:72px;margin:17px 0 10px;color:#2a1a17;font-size:clamp(27px,2.35vw,35px);line-height:1.02;letter-spacing:-.02em}
-.project-title{display:inline}
-.project-github-link{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-left:.4em;color:#8e1f1b;text-decoration:none;border-bottom:1px solid rgba(142,31,27,.35);padding-bottom:1px;transition:transform .2s ease,color .2s ease,border-color .2s ease}
-.project-github-link .ext-arrow{width:14px;height:14px;stroke-width:1.8}
-.project-github-link:hover,.project-github-link:focus-visible{color:#6b0e0c;border-color:#6b0e0c;transform:translate(2px,-2px)}
 .project-card p{min-height:80px;margin:0 0 19px;color:#2a1a17;font-size:14px;line-height:1.62;opacity:.73}
 .project-card .tags{gap:7px;margin-top:auto}
 .project-card .tags span{padding:6px 9px;background:rgba(255,255,255,.27);border:1px solid rgba(142,31,27,.2);border-radius:999px;color:#2a1a17;font-size:9px;letter-spacing:.55px}
@@ -262,6 +258,9 @@ a:focus-visible,button:focus-visible{outline:3px solid #efc75e;outline-offset:4p
 .lightbox-caption span{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;opacity:.7}
 .lightbox-close{position:absolute;top:18px;right:22px;width:44px;height:44px;display:grid;place-items:center;border:1px solid rgba(243,238,229,.45);border-radius:50%;background:rgba(243,238,229,.08);color:#f3eee5;font-size:24px;line-height:1;cursor:pointer;transition:background-color .2s ease,transform .2s ease}
 .lightbox-close:hover{background:#f3eee5;color:#6b0e0c;transform:rotate(90deg)}
+.lightbox-github-inline{display:inline-flex;align-items:center;justify-content:center;margin-left:.55em;width:26px;height:26px;border-radius:50%;background:#f3eee5;color:#6b1a1a;text-decoration:none;vertical-align:middle;flex-shrink:0;transition:background .2s,transform .2s,box-shadow .2s;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.lightbox-github-inline .ext-arrow{width:14px;height:14px;stroke-width:2.2}
+.lightbox-github-inline:hover,.lightbox-github-inline:focus-visible{background:#fff;transform:translate(2px,-2px);box-shadow:0 4px 14px rgba(0,0,0,.35);outline:none}
 .lightbox-close:focus-visible{outline:2px solid #efc75e;outline-offset:3px}
 @keyframes lightbox-in{from{opacity:0;backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0)}to{opacity:1;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}}
 @keyframes lightbox-out{from{opacity:1}to{opacity:0}}
