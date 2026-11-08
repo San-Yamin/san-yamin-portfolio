@@ -159,6 +159,10 @@ a:focus-visible,button:focus-visible{outline:3px solid #efc75e;outline-offset:4p
 .project-card .meta>span:first-child{color:var(--card-accent);font-weight:700}
 .project-card .meta>span:last-child{color:#2a1a17;opacity:.5}
 .project-card h3{min-height:72px;margin:17px 0 10px;color:#2a1a17;font-size:clamp(27px,2.35vw,35px);line-height:1.02;letter-spacing:-.02em}
+.project-title{display:inline}
+.project-github-link{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-left:.35em;color:#8e1f1b;text-decoration:none;transition:transform .2s ease,color .2s ease}
+.project-github-link .ext-arrow{width:13px;height:13px}
+.project-github-link:hover,.project-github-link:focus-visible{color:#6b0e0c;transform:translate(2px,-2px)}
 .project-card p{min-height:80px;margin:0 0 19px;color:#2a1a17;font-size:14px;line-height:1.62;opacity:.73}
 .project-card .tags{gap:7px;margin-top:auto}
 .project-card .tags span{padding:6px 9px;background:rgba(255,255,255,.27);border:1px solid rgba(142,31,27,.2);border-radius:999px;color:#2a1a17;font-size:9px;letter-spacing:.55px}
