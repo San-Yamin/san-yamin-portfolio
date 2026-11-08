@@ -8,7 +8,7 @@ const projects = [
   { title:"Life on Land", category:"Data", year:"2024", image:"/assets/life-on-land.jpg", description:"A database project analyzing Myanmar biodiversity, forest cover, carbon sequestration, and land use.", tags:["MySQL","Data analysis","Sustainability"], github:null },
   { title:"Solar Shine Pathways", category:"Engineering", year:"2024", image:null, imageFile:"project-solar-shine.jpg", description:"A solar-powered streetlight system designed for energy efficiency and safer public spaces.", tags:["Circuits","Solar","Hardware"], github:null },
   { title:"CyberAttack Log Analysis", category:"Distributed Security", year:"2026", image:"/assets/cyberattack.jpg", description:"A distributed system that analyzes network and system logs to identify suspicious activity and cyber threats.", tags:["Python","Hadoop","Log analysis"], github:"https://github.com/San-Yamin/disturbed_cyberattack_log_analysis" },
-  { title:"Crypto Escape Room", category:"Cybersecurity", year:"2026", image:null, imageFile:"project-crypto-escape-room.jpg", description:"Developed Crypto Escape Room, a cybersecurity learning project using Python Flask.", tags:["Python","Flask","Cryptography"], github:null },
+  { title:"Crypto Escape Room", category:"Cybersecurity", year:"2026", image:"/assets/ctf.jpg", description:"Developed Crypto Escape Room, a cybersecurity learning project using Python Flask.", tags:["Python","Flask","Cryptography"], github:null },
   { title:"SignLan Bridge", category:"AI · Accessibility", year:"2025", image:"/assets/signlan.jpg", description:"A Python-based system that recognizes ASL hand gestures and translates them into text in real time.", tags:["Python","Prolog","Flask"], github:null },
 ];
 
