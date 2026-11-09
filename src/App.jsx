@@ -22,7 +22,8 @@ const exchanges = [
   { slug:"jenesys", title:"JENESYS ASEAN–Japan Students Conference", place:"Japan", role:"One of 7 Myanmar representatives", type:"Student Conference", year:"2026", image:"/images-to-add/jenesys-home.jpg", gallery:[{file:"jenesys-home.jpg"},{file:"experience-jenesys-02.jpg"},{file:"experience-jenesys-03.jpg"},{file:"experience-jenesys-04.jpg"}], summary:"Joined discussions, workshops, and collaborative activities with students from ASEAN countries and Japan, exploring culture, innovation, and regional cooperation." },
   { slug:"rok-mekong", title:"ROK–Mekong Youth Group Workshop", place:"South Korea", role:"One of 5 Myanmar delegates", type:"Youth Workshop", year:"2025", image:"/images-to-add/rok-mekong.jpg?v=2", gallery:[{src:"/images-to-add/rok-mekong.jpg?v=2"},{file:"experience-rok-mekong-02.jpg"},{file:"experience-rok-mekong-03.jpg"},{file:"experience-rok-mekong-04.jpg"},{file:"experience-rok-mekong-05.jpg"},{file:"experience-rok-mekong-06.jpg"}], summary:"Explored advanced science and technology through lectures and visits to KISTI, KAIST, and ETRI while building cross-cultural connections." },
   { slug:"aaylf", title:"ASEAN–Australia Young Leaders Forum", place:"Vietnam", role:"One of 3 Myanmar delegates", type:"Leadership Forum", year:"2024", image:"/assets/aaylf.jpg", gallery:[{src:"/assets/aaylf.jpg"},{file:"experience-aaylf-02.jpg"},{file:"experience-aaylf-03.jpg"},{file:"experience-aaylf-04.jpg"}], summary:"Contributed to leadership development and discussions on regional technology challenges and ASEAN–Australia relations." },
-  { title:"ASEAN Youth for Digital Action", place:"Online · ASEAN", role:"Alumnus", year:"2024", image:null, imageFile:"exchange-ayda.jpg", summary:"Built digital skills through workshops, mentorship, and an online workplace internship supporting a sustainability-focused MSME." },
+  { slug:"ayda", title:"ASEAN Youth for Digital Action (AYDA)", place:"Online · ASEAN", role:"Alumnus", type:"Youth Program", year:"2024", summary:"Participated in an ASEAN-focused initiative through digital skills workshops, mentorship, and online internship opportunities." },
+  { slug:"balini-organic", title:"Balini Organic", place:"Online · Myanmar", role:"3-week Online Workplace Intern", type:"Workplace Internship", year:"2024", summary:"Supported a sustainability-focused organic cacao business through SME website development, market research, and social media management." },
 ];
 
 const leadership = [
@@ -55,13 +56,20 @@ const universityFeatures = [
 ];
 
 const achievements = [
-  { slug:"kbzpay-appcube-hackathon", type:"Hackathon", date:"March 2026", title:"KBZPay AppCube Hackathon", role:"Best Mini App Award · 2nd Place (1st Runner-Up)", description:"Led the team behind “EverAfter,” a mini app built on the KBZPay AppCube platform.", gallery:[{file:"achievement-kbzpay-hackathon-01.jpg"},{file:"achievement-kbzpay-hackathon-02.jpg"},{file:"achievement-kbzpay-hackathon-03.jpg"},{file:"achievement-kbzpay-hackathon-04.jpg"}] },
-  { slug:"youth-entrepreneurship-program", type:"Program", date:"May 2024", title:"Youth Entrepreneurship Program", role:"Pitch Deck Competition", description:"Won second prize with a team business idea focused on sustainability.", gallery:[{file:"achievement-youth-entrepreneurship-01.jpg"},{file:"achievement-youth-entrepreneurship-02.jpg"},{file:"achievement-youth-entrepreneurship-03.jpg"},{file:"achievement-youth-entrepreneurship-04.jpg"}] },
+  { slug:"kbzpay-appcube-hackathon", type:"Hackathon", date:"March 2026", title:"KBZPay × HUAWEI AppCube Hackathon 2026", role:"Best Mini App Award · 2nd Place (1st Runner-Up)", leadershipRole:"Team Leader", description:"Led the development of “EverAfter,” a mini app built using the AppCube platform, during the KBZPay AppCube Mini Apps Hackathon 2026.", gallery:[{file:"achievement-kbzpay-hackathon-01.jpg"},{file:"achievement-kbzpay-hackathon-02.jpg"},{file:"achievement-kbzpay-hackathon-03.jpg"},{file:"achievement-kbzpay-hackathon-04.jpg"}] },
+  { slug:"youth-entrepreneurship-program", type:"Program", date:"May 2024", title:"Youth Entrepreneurship Program (YEP)", organization:"American Center Yangon", role:"Second Prize · Pitch Deck Competition", description:"Participated in the Youth Entrepreneurship Program hosted by the American Center Yangon, where my team won second prize in a pitch deck competition for a sustainability-focused business idea.", homeImageFile:"achievement-youth-entrepreneurship-03.jpg", gallery:[{file:"achievement-youth-entrepreneurship-01.jpg"},{file:"achievement-youth-entrepreneurship-02.jpg"},{file:"achievement-youth-entrepreneurship-03.jpg"},{file:"achievement-youth-entrepreneurship-04.jpg"}] },
   { slug:"unesco-youth-hackathon", type:"Hackathon", date:"October 2025", title:"UNESCO Youth Hackathon", role:"Media & Information Literacy", description:"Contributed “CyberBuddy,” a youth-focused media and information literacy project.", gallery:[{file:"achievement-unesco-hackathon-01.jpg"}] },
   { slug:"green-talent-generation-hackathon", type:"Hackathon", date:"July 2024", title:"Green Talent Generation Hackathon", role:"Thailand · Sustainability", description:"Contributed to a technology project supporting sustainable practices.", gallery:[{file:"achievement-green-talent-01.jpg"}] },
 ];
 
 const certificates = [
+  { id:"geoai-bootcamp-1", category:"Program", date:"7 to 9 July 2026", title:"ASEAN GeoAI Fusion 2026 · Bootcamp 1: Foundation Track", organization:"Malaysian Communications and Multimedia Commission (MCMC)", imageFile:"certificate-asean-geoai-bootcamp-1.webp", role:"Certificate of Participation" },
+  { id:"geoai-bootcamp-2", category:"Program", date:"21 to 23 July 2026", title:"ASEAN GeoAI Fusion 2026 · Bootcamp 2: Advance Track", organization:"Malaysian Communications and Multimedia Commission (MCMC)", imageFile:"certificate-asean-geoai-bootcamp-2.webp", role:"Certificate of Participation" },
+  { id:"geoai-explorer", category:"Program", date:"22 September 2026", title:"Certificate of GeoAI Explorer", organization:"GAIEx · Universiti Malaya-Wales", imageFile:"certificate-geoai-explorer.webp", role:"ASEAN GeoAI Fusion 2026" },
+  { id:"ccna-switching-routing-wireless", category:"Course", date:"31 December 2025", title:"CCNA: Switching, Routing, and Wireless Essentials", organization:"University of Computer Studies Yangon", imageFile:"certificate-ccna-switching-routing-wireless.webp", role:"Cisco Networking Academy" },
+  { id:"cybersecurity-essentials", category:"Course", date:"2 December 2025", title:"Cybersecurity Essentials", organization:"University of Information Technology (UIT)", imageFile:"certificate-cybersecurity-essentials.webp", role:"Cisco Networking Academy" },
+  { id:"junior-cybersecurity-analyst", category:"Course", date:"16 September 2025", title:"Junior Cybersecurity Analyst Career Path Exam", organization:"Nikoye Net Academy", imageFile:"certificate-junior-cybersecurity-analyst.webp", role:"Cisco Networking Academy" },
+  { id:"ui-ux-essential-course", category:"Course", date:"Batch 3", title:"UI/UX Essential Course", organization:"MM Project", imageFile:"certificate-ui-ux-essential-course.webp", role:"Certificate of Completion" },
   { id:"unesco", category:"Hackathon", date:"October 2025", title:"Certificate of Participation - UNESCO Youth Hackathon", organization:"UNESCO", imageFile:"achievement-unesco-hackathon-01.jpg", role:"Media & Information Literacy" },
   { id:"green-talent", category:"Hackathon", date:"July 2024", title:"Certificate of Participation - Green Talent Generation Hackathon", organization:"Green Talent Generation", imageFile:"achievement-green-talent-01.jpg", role:"Thailand · Sustainability" },
 ];
@@ -136,6 +144,29 @@ function ProjectCard({ project, index=0, featured=false, onPreview }) {
   return <article className={`project-card${featured?" featured":""} reveal-fade`} style={{"--rd":`${Math.min(index,8)*70}ms`}} role="link" tabIndex="0" aria-label={`View project: ${project.title}`} onClick={openProject} onKeyDown={event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openProject(event);}}}><div className="project-image"><ImageSlot src={project.image} file={project.imageFile} alt={project.title} /><span className="project-number" aria-hidden="true">0{index + 1}</span></div><div className="card-body"><div className="meta"><span>{project.category}</span><span>{project.year}</span></div><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.tags.map(tag=><span key={tag}>{tag}</span>)}</div><span className="project-action" aria-hidden="true"><span className="project-action-icon">→</span></span></div></article>;
 }
 
+function PhotoLightbox({ src, alt, title, subtitle, onClose }) {
+  const closeRef = useRef(null);
+  const [closing, setClosing] = useState(false);
+  const close = () => { if (closing) return; setClosing(true); setTimeout(onClose, 180); };
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
+    const onKey = event => { if (event.key === "Escape") close(); };
+    addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = previousOverflow; removeEventListener("keydown", onKey); };
+  });
+
+  return <div className={`lightbox${closing ? " closing" : ""}`} role="dialog" aria-modal="true" aria-label={alt} onClick={close}>
+    <button className="lightbox-close" ref={closeRef} onClick={close} aria-label="Close photo preview">×</button>
+    <figure className="lightbox-figure" onClick={event => event.stopPropagation()}>
+      <img src={src} alt={alt} />
+      <figcaption className="lightbox-caption"><strong>{title}</strong><span>{subtitle}</span></figcaption>
+    </figure>
+  </div>;
+}
+
 function ProjectLightbox({ project, rect, onClose }) {
   const src = project.image || `/images-to-add/${project.imageFile}`;
   const imgRef = useRef(null);
@@ -202,72 +233,79 @@ function UniversityCardGrid() {
 }
 
 function UniversityPage() {
-  return <main className="subpage cream university-detail"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Campus life</span><p className="kicker">University of Information Technology · Yangon</p><h1>University activities.</h1><p>Roles, volunteering, and community involvement alongside my studies at UIT — from managing a club's finances to representing the student body.</p></div></section><div className="experience-showcase">{universityFeatures.map((x,i)=><section id={x.slug} className={`experience-feature${i % 2 ? " reverse" : ""}`} key={x.slug}><div className="section-inner"><div className="experience-feature-copy reveal"><div className="experience-feature-meta"><span>0{i + 1} · {x.type}</span><span>{x.place}</span></div><h2>{x.title}</h2><p className="experience-role">{x.role}</p>{x.paragraphs.map(p=><p key={p}>{p}</p>)}</div><div className={`experience-gallery reveal${x.gallery.length === 1 ? " single" : ""}`}>{x.gallery.map((photo,j)=><figure className={j === 0 && x.gallery.length > 1 ? "lead-photo" : ""} key={photo.file}><ImageSlot file={photo.file} alt={`${x.title} photo ${j + 1}`}/></figure>)}</div></div></section>)}</div></main>;
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const openPhoto = (x, photo, index) => {
+    const src = photo.src || (photo.file ? `/images-to-add/${photo.file}` : null);
+    if (src) setSelectedPhoto({src, alt:`${x.title} photo ${index + 1}`, title:x.title, subtitle:x.place});
+  };
+  return <main className="subpage cream university-detail">
+    <section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Campus life</span><p className="kicker">University of Information Technology · Yangon</p><h1>University activities.</h1><p>Roles, volunteering, and community involvement have shaped my studies at UIT, from managing a club's finances to representing the student body.</p></div></section>
+    <div className="experience-showcase">
+      {universityFeatures.map((x,i)=><section className={`experience-feature${i % 2 ? " reverse" : ""}`} id={x.slug} key={x.slug}>
+        <div className="section-inner">
+          <div className="experience-feature-copy reveal"><div className="experience-feature-meta"><span>0{i + 1} · {x.type}</span><span>{x.place}</span></div><h2>{x.title}</h2><p className="experience-role">{x.role}</p>{x.paragraphs.map(p=><p key={p}>{p}</p>)}</div>
+          <div className="experience-gallery reveal">
+            {x.gallery.map((photo,j)=><figure className={j === 0 && x.gallery.length > 1 ? "lead-photo" : ""} key={photo.file} role="button" tabIndex="0" aria-label={`View full size: ${x.title} photo ${j + 1}`} onClick={() => openPhoto(x,photo,j)} onKeyDown={e=>{if(e.key === "Enter" || e.key === " "){e.preventDefault();openPhoto(x,photo,j)}}}><ImageSlot file={photo.file} alt={`${x.title} photo ${j + 1}`} /></figure>)}
+          </div>
+        </div>
+      </section>)}
+    </div>
+    {selectedPhoto && <PhotoLightbox src={selectedPhoto.src} alt={selectedPhoto.alt} title={selectedPhoto.title} subtitle={selectedPhoto.subtitle} onClose={() => setSelectedPhoto(null)} />}
+  </main>;
 }
 
 function CertificateGallery({ items }) {
   const [selected, setSelected] = useState(null);
 
-  useEffect(() => {
-    if (selected) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
-  }, [selected]);
-
-  useEffect(() => {
-    const onKey = (e) => { if (e.key === "Escape") setSelected(null); };
-    if (selected) addEventListener("keydown", onKey);
-    return () => removeEventListener("keydown", onKey);
-  }, [selected]);
-
   if (!items || items.length === 0) return null;
 
   return (
-    <section className="certificate-compact">
+    <section className="certificate-compact" aria-label="Certificates">
       <div className="section-inner">
         <div className="certificate-compact-header reveal">
           <div>
-            <span className="script">Certificates</span>
+            <span className="script">Recognition</span>
             <h2>Certificates</h2>
           </div>
         </div>
         <div className="certificate-compact-grid">
-          {items.slice(0, 4).map((item, i) => (
+          {items.map((item, i) => (
             <article key={item.id} className="certificate-compact-item reveal-fade" style={{"--rd":`${i*50}ms`}} onClick={() => setSelected(item)} tabIndex="0" role="button" aria-label={`View ${item.title} certificate`} onKeyDown={e => { if(e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelected(item); } }}>
               <div className="certificate-compact-frame">
                 <img src={`/images-to-add/${item.imageFile}`} alt={`${item.title} certificate`} loading="lazy" />
               </div>
-              <p className="certificate-compact-title">{item.title}</p>
+              <div className="certificate-card-copy">
+                <strong>{item.title.replace("Certificate of Participation - ", "")}</strong>
+                <span>Certificate of Participation</span>
+                <em>{item.organization}</em>
+              </div>
             </article>
           ))}
         </div>
+        <button className="certificate-view-all" onClick={() => navigateTo("/certificates")}>View all certificates <span>→</span></button>
       </div>
-      {selected && (
-        <div className="certificate-lightbox" role="dialog" aria-modal="true" aria-label={`${selected.title} certificate`} onClick={() => setSelected(null)}>
-          <button className="certificate-lightbox-close" onClick={() => setSelected(null)} aria-label="Close certificate">×</button>
-          <div className="certificate-lightbox-content" onClick={e => e.stopPropagation()}>
-            <img src={`/images-to-add/${selected.imageFile}`} alt={`${selected.title} certificate full size`} />
-            <div className="certificate-lightbox-caption">
-              <strong>{selected.title}</strong>
-              <span>{selected.organization} · {selected.date}</span>
-            </div>
-          </div>
-        </div>
-      )}
+      {selected && <PhotoLightbox src={`/images-to-add/${selected.imageFile}`} alt={`${selected.title} certificate full size`} title={selected.title} subtitle={`${selected.organization} · ${selected.date}`} onClose={() => setSelected(null)} />}
     </section>
   );
+}
+
+function CertificatesPage() {
+  const activeTab = new URLSearchParams(window.location.search).get("tab");
+  return <main className="subpage cream certificates-page">
+    <section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Recognition</span><h1>Certificates.</h1><nav className="achievement-hero-tabs" aria-label="Achievement categories"><a href="/achievements?tab=hackathons#kbzpay-appcube-hackathon">Hackathons</a><a href="/achievements?tab=awards#kbzpay-appcube-hackathon">Awards</a><a href="/achievements?tab=programs#youth-entrepreneurship-program">Programs</a><a className={activeTab === "certificates" ? "active" : ""} href="/certificates?tab=certificates" aria-current={activeTab === "certificates" ? "page" : undefined}>Certificates</a></nav></div></section>
+    <CertificateGallery items={certificates} />
+  </main>;
 }
 
 function AchievementsPage() {
   const order = ["kbzpay-appcube-hackathon", "youth-entrepreneurship-program"];
   const items = order.map(slug => achievements.find(a => a.slug === slug)).filter(Boolean);
-  return <main className="subpage cream achievements-page"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Selected highlights</span><p className="kicker">Hackathons · Awards · Programs</p><h1>Achievements.</h1><p>Hackathons, awards, and programs where I contributed — from building award-winning mini apps to youth-focused technology and sustainability projects.</p></div></section><div className="experience-showcase">{items.map((x,i)=>{
+  const [photoPreview, setPhotoPreview] = useState(null);
+  const activeTab = new URLSearchParams(window.location.search).get("tab") || "";
+  return <main className="subpage cream achievements-page"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Selected highlights</span><h1>Achievements.</h1><p>Hackathons, awards, and programs where I contributed. I built award-winning mini apps and worked on youth-focused technology and sustainability projects.</p><nav className="achievement-hero-tabs" aria-label="Achievement categories"><a className={activeTab === "hackathons" ? "active" : ""} href="/achievements?tab=hackathons#kbzpay-appcube-hackathon">Hackathons</a><a className={activeTab === "awards" ? "active" : ""} href="/achievements?tab=awards#kbzpay-appcube-hackathon">Awards</a><a className={activeTab === "programs" ? "active" : ""} href="/achievements?tab=programs#youth-entrepreneurship-program">Programs</a><a className={activeTab === "certificates" ? "active" : ""} href="/certificates?tab=certificates">Certificates</a></nav></div></section><div className="experience-showcase">{items.map((x,i)=>{
     const isFull = x.slug === "youth-entrepreneurship-program" || x.slug === "kbzpay-appcube-hackathon";
-    return <section id={x.slug} className={`experience-feature${i % 2 ? " reverse" : ""}`} key={x.slug}><div className="section-inner"><div className="experience-feature-copy reveal"><div className="experience-feature-meta"><span>0{i + 1} · {x.type}</span><span>{x.date}</span></div><h2>{x.title}</h2><p className="experience-role">{x.role}</p>{isFull && x.description && <p>{x.description}</p>}</div><div className={`experience-gallery reveal${x.gallery.length === 1 ? " single" : ""}`}>{x.gallery.map((photo,j)=><figure className={j === 0 && x.gallery.length > 1 && isFull ? "lead-photo" : ""} key={photo.src || photo.file}><ImageSlot src={photo.src} file={photo.file} alt={`${x.title} photo ${j + 1}`} /></figure>)}</div></div></section>
-  })}</div><CertificateGallery items={certificates} /></main>;
+     return <section id={x.slug} className={`experience-feature${i % 2 ? " reverse" : ""}`} key={x.slug}><div className="section-inner"><div className="experience-feature-copy reveal"><div className="experience-feature-meta"><span>0{i + 1} · {x.type}</span><span>{x.date}</span></div><h2>{x.title}</h2><ul className="achievement-detail-points">{x.organization && <li>{x.organization}</li>}<li>{x.role}</li>{x.leadershipRole && <li>{x.leadershipRole}</li>}{isFull && x.description && <li>{x.description}</li>}</ul></div><div className={`experience-gallery reveal${x.gallery.length === 1 ? " single" : ""}`}>{x.gallery.map((photo,j)=>{const photoSrc = photo.src || (photo.file ? `/images-to-add/${photo.file}` : null); const openPhoto = () => photoSrc && setPhotoPreview({src:photoSrc, alt:`${x.title} photo ${j + 1}`, title:x.title, subtitle:`${x.type} · ${x.date}`}); return <figure className={j === 0 && x.gallery.length > 1 && isFull ? "lead-photo" : ""} key={photo.src || photo.file} role={photoSrc ? "button" : undefined} tabIndex={photoSrc ? 0 : undefined} onClick={openPhoto} onKeyDown={event => {if(photoSrc && (event.key === "Enter" || event.key === " ")){event.preventDefault();openPhoto();}}}><ImageSlot src={photo.src} file={photo.file} alt={`${x.title} photo ${j + 1}`} /></figure>})}</div></div></section>
+   })}</div><div id="certificates"><CertificateGallery items={certificates.slice(0, 4)} /></div>{photoPreview && <PhotoLightbox {...photoPreview} onClose={() => setPhotoPreview(null)} />}</main>;
 }
 
 function ExchangeCard({ item, index }) {
@@ -294,7 +332,8 @@ function Header({ menuOpen, setMenuOpen }) {
 function Home() {
   const [preview, setPreview] = useState(null);
   const openAchievement = () => navigateTo("/achievements");
-  return <>
+  const featuredAchievements = achievements.slice(0, 2);
+  return <main className="home-page">
     <section id="top" className="hero"><div className="hero-copy"><div className="hero-focus hero-focus-top" aria-label="Focus areas">{["Cybersecurity","AI & ML","Digital Trust","Social Impact","Global Collaboration"].map(item=><span key={item}>{item}</span>)}</div><h1>San<br/>Yamin<span>.</span></h1><p className="intro">I’m San Yamin from Myanmar, working at the intersection of cybersecurity, AI, digital trust, and youth empowerment. As a cybersecurity student, researcher, content creator, and tech builder, I combine technical problem-solving with visual storytelling to make technology safer, more responsible, and more accessible. Through research, technical projects, Aspire Now, and SanSan’s Yellow Notebook, I share opportunities and experiences while building digital solutions that can create meaningful impact for young people and communities.</p><div className="hero-links"><a className="text-link" href="https://www.linkedin.com/in/san-yamin-18b781307" target="_blank" rel="noreferrer">LinkedIn <ExternalArrow /></a><a className="text-link" href="https://github.com/San-Yamin" target="_blank" rel="noreferrer">GitHub <ExternalArrow /></a><a className="text-link" href="/images-to-add/CV_San_Yamin.pdf" download>Download CV <ExternalArrow /></a></div></div><div className="hero-visual-wrap"><span className="hero-word" aria-hidden="true">Portfolio</span><figure className="hero-visual"><div className="hero-image-frame"><picture><source type="image/webp" srcSet="/assets/portrait-hero.webp"/><img src="/assets/portrait-hero.jpg" alt="San Yamin" fetchPriority="high" decoding="async"/></picture></div><figcaption className="portrait-label">Yangon, Myanmar</figcaption></figure></div></section>
 
     <section className="section cream education education-editorial"><div className="section-inner education-editorial-layout"><div className="education-accent" aria-hidden="true"><span className="script">Education</span><strong>UIT</strong></div><div className="education-details"><span className="label">Current education</span><h2>University of Information Technology <a className="education-site-link" href="https://uit.edu.mm/" target="_blank" rel="noreferrer" aria-label="Visit the University of Information Technology website"><ExternalArrow /></a></h2><p className="education-location">Yangon, Myanmar</p><div className="education-meta"><p><strong>B.C.Tech in Computer Technology</strong></p><p>Specialization: <strong>Cybersecurity</strong></p><time>2022 — Present</time></div><div className="academic-focus"><span className="label">Academic Focus</span><p>Cybersecurity · Artificial Intelligence · Information Systems · Software Development</p></div></div></div></section>
@@ -303,7 +342,7 @@ function Home() {
 
     <section className="section cream international-section"><div className="section-inner"><SectionHeader eyebrow="Across borders" title="International experiences" intro="Learning, contributing, and representing Myanmar in regional and international spaces."/><div className="card-grid">{exchanges.slice(0,3).map((x,i)=><ExchangeCard item={x} index={i} key={x.title}/>)}</div><ArrowLink onClick={()=>navigateTo("/international-experiences")}>View experiences</ArrowLink></div></section>
 
-    <section className="section red achievement"><div className="section-inner"><SectionHeader eyebrow="Selected highlights" title="Achievements"/><div className="achievement-list">{achievements.map((a,i)=><article className="reveal" role="link" tabIndex="0" aria-label={`View ${a.title}`} onClick={openAchievement} onKeyDown={event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openAchievement();}}} key={a.slug}><div><span>0{i + 1}</span><time>{a.date}</time></div><div><h3>{a.title}</h3><p className="role">{a.role}</p></div><p>{a.description}</p></article>)}</div><ArrowLink onClick={()=>navigateTo("/achievements")}>View achievements</ArrowLink></div></section>
+     <section className="section red achievement"><div className="section-inner"><SectionHeader eyebrow="Selected highlights" title="Achievements"/><div className="achievement-home-grid">{featuredAchievements.map((a,i)=><article className={`achievement-home-card${i === 0 ? " featured" : ""} reveal`} role="link" tabIndex="0" aria-label={`View ${a.title}`} onClick={openAchievement} onKeyDown={event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openAchievement();}}} key={a.slug}><div className="achievement-home-meta"><span>0{i + 1}</span><time>{a.date}</time></div><div className="achievement-home-copy"><h3>{a.title}</h3><p className="role">{a.role}</p>{a.leadershipRole && <p className="achievement-home-highlight">{a.leadershipRole}</p>}{a.organization && <p className="achievement-home-highlight">{a.organization}</p>}</div><div className="achievement-home-image"><ImageSlot file={a.homeImageFile || a.gallery?.[0]?.file} alt={`${a.title} achievement`} /></div></article>)}</div><ArrowLink onClick={()=>navigateTo("/achievements")}>View all achievements</ArrowLink></div></section>
 
     <section id="projects" className="section cream"><div className="section-inner"><SectionHeader eyebrow="Selected work" title="Technical projects" intro="Selected projects across cybersecurity, distributed systems, AI, and web development."/><div className="card-grid">{featuredProjects.map((p,i)=><ProjectCard project={p} index={i} key={p.title} onPreview={(project,rect)=>setPreview({project,rect})}/>)}</div><ArrowLink onClick={()=>navigateTo("/projects")}>View projects</ArrowLink></div></section>
 
@@ -313,7 +352,7 @@ function Home() {
 
     <footer id="contact" className="section contact dark"><div className="section-inner"><span className="script">Let’s connect</span><div className="contact-row"><div><h2>Let’s build something meaningful.</h2></div><div className="contact-links"><a href="mailto:sanyamin@uit.edu.mm">Email <ExternalArrow /></a><a href="https://www.linkedin.com/in/san-yamin-18b781307" target="_blank" rel="noreferrer">LinkedIn <ExternalArrow /></a></div></div><div className="footer-line"><span>© 2026 San Yamin</span><button onClick={()=>scrollToSection(document.body, 0)}>Back to top ↑</button></div></div></footer>
     {preview && <ProjectLightbox project={preview.project} rect={preview.rect} onClose={()=>setPreview(null)}/>}
-  </>;
+  </main>;
 }
 
 function ProjectsPage() {
@@ -323,13 +362,18 @@ function ProjectsPage() {
 
 function ExchangesPage() {
   const featuredExperiences = exchanges.filter((x) => x.gallery);
+  const additionalExperiences = exchanges.filter((x) => !x.gallery);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const openPhoto = (x, photo, index) => {
+    const src = photo.src || (photo.file ? `/images-to-add/${photo.file}` : null);
+    if (src) setSelectedPhoto({src, alt:`${x.title} photo ${index + 1}`, title:x.title, subtitle:`${x.place} · ${x.year}`});
+  };
 
   return <main className="subpage cream experiences-page">
     <section className="page-hero red">
       <div className="section-inner">
         <BackToHome />
         <span className="script">Across borders</span>
-        <p className="kicker">Cross-cultural exchange · Regional engagement</p>
         <h1>International experiences.</h1>
         <p>A collection of international experiences in cross-cultural exchange, technology, leadership, and representing Myanmar.</p>
       </div>
@@ -364,17 +408,53 @@ function ExchangesPage() {
             </> : <p>{x.summary}</p>}
           </div>
           <div className="experience-gallery reveal">
-            {x.gallery.map((photo, j) => <figure className={j === 0 && x.gallery.length > 1 ? "lead-photo" : ""} key={photo.src || photo.file}>
+            {x.gallery.map((photo, j) => <figure className={j === 0 && x.gallery.length > 1 ? "lead-photo" : ""} key={photo.src || photo.file} role="button" tabIndex="0" aria-label={`View full size: ${x.title} photo ${j + 1}`} onClick={() => openPhoto(x, photo, j)} onKeyDown={event => { if(event.key === "Enter" || event.key === " "){event.preventDefault();openPhoto(x, photo, j);}}}>
               <ImageSlot src={photo.src} file={photo.file} alt={`${x.title} photo ${j + 1}`} />
             </figure>)}
           </div>
         </div>
       </section>)}
     </div>
+    <section className="exchange-additional" aria-labelledby="additional-experiences-title">
+      <div className="section-inner">
+        <div className="exchange-additional-heading">
+          <span className="script">More connections</span>
+          <h2 id="additional-experiences-title">Additional programs</h2>
+          <p>Smaller online programs and workplace experience that extended my regional and digital learning.</p>
+        </div>
+        <div className="exchange-additional-grid">
+          {additionalExperiences.map((x, i) => <article className="exchange-additional-card reveal" key={x.slug}>
+            <div className="exchange-additional-meta"><span>0{i + 4}</span><span>{x.place} · {x.year}</span></div>
+            <h3>{x.title}</h3>
+            <p className="exchange-additional-role">{x.role}</p>
+            <p>{x.summary}</p>
+          </article>)}
+        </div>
+      </div>
+    </section>
+    {selectedPhoto && <PhotoLightbox src={selectedPhoto.src} alt={selectedPhoto.alt} title={selectedPhoto.title} subtitle={selectedPhoto.subtitle} onClose={() => setSelectedPhoto(null)} />}
   </main>;
 }
 
-function LeadershipPage({ slug }) { const item=leadership.find(x=>x.slug===slug); if(!item) return <NotFound/>; const isNotebook=item.slug==="sansans-yellow-notebook"; return <main className="subpage cream leadership-detail"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Leadership story</span><p className="kicker">{item.role}</p><h1>{item.title}.</h1><p className="leadership-hero-desc">{item.description}</p></div></section><section className="section leadership-overview"><div className="section-inner story-grid"><div className="reveal"><ImageSlot file={item.imageFile} alt={item.title}/>{!item.posts&&<div className="gallery-slots"><ImageSlot file={`${item.slug}-gallery-01.jpg`} alt={`${item.title} gallery 1`}/><ImageSlot file={`${item.slug}-gallery-02.jpg`} alt={`${item.title} gallery 2`}/></div>}</div><div className="reveal" style={{"--rd":"100ms"}}><span className="label">Overview</span><h2>Why it matters</h2><p>{item.why}</p><span className="label top-gap">What I do</span><ul>{item.work.map(x=><li key={x}>{x}</li>)}</ul><div className="leadership-socials"><span className="label">Official pages</span>{item.links.map(link=>link.url?<a href={link.url} target="_blank" rel="noreferrer" key={link.label}>{link.label}<ExternalArrow /></a>:<span className="social-soon" key={link.label}>{link.label}<em>{link.note}</em></span>)}</div></div></div></section>{item.posts&&<section className="section notebook-preview"><div className="section-inner"><div className="notebook-preview-heading reveal"><div><span className="script">{isNotebook?"From the notebook":"From Aspire Now"}</span><h2>Preview posts</h2></div><p>{isNotebook?"Original content and graphics created and drawn by me for Sansan’s Yellow Notebook.":"As Co-Founder and Head of Graphic Design, I manage the creative team. These highlighted Aspire Now posts were designed and created by me."}</p></div><div className="notebook-post-grid">{item.posts.map((post,i)=><a href={`/images-to-add/${post.file}`} target="_blank" rel="noreferrer" className="notebook-post reveal-fade" style={{"--rd":`${Math.min(i,8)*50}ms`}} key={post.file} aria-label={`Open ${post.label} from ${item.title}`}><ImageSlot file={post.file} alt={`${post.label} — ${item.title}`}/><span>{post.label} <ExternalArrow /></span></a>)}</div></div></section>}</main>; }
+function LeadershipPage({ slug }) {
+  const item=leadership.find(x=>x.slug===slug);
+  if(!item) return <NotFound/>;
+  const isNotebook=item.slug==="sansans-yellow-notebook";
+  const [selectedPhoto,setSelectedPhoto]=useState(null);
+  const showPhoto=(src,alt,title=item.title)=>setSelectedPhoto({src,alt,title,subtitle:item.role});
+  return <main className="subpage cream leadership-detail">
+    <section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Leadership story</span><p className="kicker">{item.role}</p><h1>{item.title}.</h1><p className="leadership-hero-desc">{item.description}</p></div></section>
+    <section className="section leadership-overview"><div className="section-inner story-grid">
+      <div className="reveal leadership-image-click" role="button" tabIndex="0" aria-label={`View ${item.title} image`} onClick={()=>showPhoto(`/images-to-add/${item.imageFile}`,item.title)} onKeyDown={e=>{if(e.key === "Enter" || e.key === " "){e.preventDefault();showPhoto(`/images-to-add/${item.imageFile}`,item.title)}}}>
+        <ImageSlot file={item.imageFile} alt={item.title}/>
+        {!item.posts&&<div className="gallery-slots"><ImageSlot file={`${item.slug}-gallery-01.jpg`} alt={`${item.title} gallery 1`}/><ImageSlot file={`${item.slug}-gallery-02.jpg`} alt={`${item.title} gallery 2`}/></div>}
+      </div>
+      <div className="reveal" style={{"--rd":"100ms"}}><span className="label">Overview</span><h2>Why it matters</h2><p>{item.why}</p><span className="label top-gap">What I do</span><ul>{item.work.map(x=><li key={x}>{x}</li>)}</ul><div className="leadership-socials"><span className="label">Official pages</span>{item.links.map(link=>link.url?<a href={link.url} target="_blank" rel="noreferrer" key={link.label}>{link.label}<ExternalArrow /></a>:<span className="social-soon" key={link.label}>{link.label}<em>{link.note}</em></span>)}</div></div>
+    </div></section>
+    {item.posts&&<section className="section notebook-preview"><div className="section-inner"><div className="notebook-preview-heading reveal"><div><span className="script">{isNotebook?"From the notebook":"From Aspire Now"}</span><h2>Preview posts</h2></div><p>{isNotebook?"Original content and graphics created and drawn by me for Sansan’s Yellow Notebook.":"As Co-Founder and Head of Graphic Design, I manage the creative team. These highlighted Aspire Now posts were designed and created by me."}</p></div><div className="notebook-post-grid">{item.posts.map((post,i)=><a href={`/images-to-add/${post.file}`} className="notebook-post reveal-fade" style={{"--rd":`${Math.min(i,8)*50}ms`}} key={post.file} aria-label={`Open ${post.label} from ${item.title}`} onClick={e=>{e.preventDefault();showPhoto(`/images-to-add/${post.file}`,`${post.label} — ${item.title}`)}}><ImageSlot file={post.file} alt={`${post.label} — ${item.title}`}/><span>{post.label} <ExternalArrow /></span></a>)}</div></div></section>}
+    {selectedPhoto&&<PhotoLightbox src={selectedPhoto.src} alt={selectedPhoto.alt} title={selectedPhoto.title} subtitle={selectedPhoto.subtitle} onClose={()=>setSelectedPhoto(null)}/>} 
+  </main>;
+}
 
 function NotFound(){ return <main className="subpage cream"><section className="page-hero"><div className="section-inner"><p className="kicker">404</p><h1>Page not found.</h1><ArrowLink onClick={()=>navigateTo("/")}>Return home</ArrowLink></div></section></main>; }
 
@@ -398,6 +478,6 @@ export function App() {
     els.forEach(el=>{ if(!el.classList.contains("is-visible")) io.observe(el); });
     return ()=>io.disconnect();
   },[path]);
-  let page=path==="/"?<Home/>:path==="/projects"?<ProjectsPage/>:path==="/international-experiences"?<ExchangesPage/>:path==="/university-activities"?<UniversityPage/>:path==="/achievements"?<AchievementsPage/>:path.startsWith("/leadership/")?<LeadershipPage slug={path.split("/").pop()}/>:<NotFound/>;
+  let page=path==="/"?<Home/>:path==="/projects"?<ProjectsPage/>:path==="/international-experiences"?<ExchangesPage/>:path==="/university-activities"?<UniversityPage/>:path==="/achievements"?<AchievementsPage/>:path==="/certificates"?<CertificatesPage/>:path.startsWith("/leadership/")?<LeadershipPage slug={path.split("/").pop()}/>:<NotFound/>;
   return <><Header menuOpen={menuOpen} setMenuOpen={setMenuOpen}/><div className="route" key={path}>{page}</div></>;
 }
