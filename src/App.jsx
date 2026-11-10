@@ -363,7 +363,8 @@ function Header({ path, menuOpen, setMenuOpen }) {
       let current = "home";
       sections.forEach(([key, id]) => {
         const section = document.getElementById(id);
-        if (section && section.offsetTop <= marker) current = key;
+        const sectionTop = section ? section.getBoundingClientRect().top + window.scrollY : Infinity;
+        if (sectionTop <= marker) current = key;
       });
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80) current = "contact";
       setActiveSection(current);
