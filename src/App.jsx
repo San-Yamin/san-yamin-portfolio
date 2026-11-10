@@ -64,6 +64,7 @@ const achievements = [
 ];
 
 const certificates = [
+  { id:"asean-data-science-explorers", category:"Program", date:"2026", title:"ASEAN Data Science Explorers 2026 Competition", organization:"SAP · ASEAN Foundation", imageFile:"certificate-asean-data-science-explorers.webp", role:"Certificate of Participation" },
   { id:"geoai-bootcamp-1", category:"Program", date:"7 to 9 July 2026", title:"ASEAN GeoAI Fusion 2026 · Bootcamp 1: Foundation Track", organization:"Malaysian Communications and Multimedia Commission (MCMC)", imageFile:"certificate-asean-geoai-bootcamp-1.webp", role:"Certificate of Participation" },
   { id:"geoai-bootcamp-2", category:"Program", date:"21 to 23 July 2026", title:"ASEAN GeoAI Fusion 2026 · Bootcamp 2: Advance Track", organization:"Malaysian Communications and Multimedia Commission (MCMC)", imageFile:"certificate-asean-geoai-bootcamp-2.webp", role:"Certificate of Participation" },
   { id:"geoai-explorer", category:"Program", date:"22 September 2026", title:"Certificate of GeoAI Explorer", organization:"GAIEx · Universiti Malaya-Wales", imageFile:"certificate-geoai-explorer.webp", role:"ASEAN GeoAI Fusion 2026" },
