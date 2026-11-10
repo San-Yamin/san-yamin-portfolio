@@ -507,6 +507,11 @@ a:focus-visible,button:focus-visible{outline:3px solid #efc75e;outline-offset:4p
 /* University Activities: clean 3-column highlight card grid */
 .university-section .section-header{margin-bottom:0}
 .university-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:38px}
+.home-page>#leadership .section-header,.home-page>#international .section-header,.home-page>#achievements .section-header,.home-page>#projects .section-header,.home-page>#experience .section-header,.home-page>#university .section-header{margin-bottom:44px;padding-top:16px}
+.home-page>#university .section-header{min-height:120px}
+.home-page>#university .university-grid{margin-top:0}
+@media(max-width:760px){.home-page>#university .section-header{min-height:0}}
+@media(max-width:760px){.home-page>#leadership .section-header,.home-page>#international .section-header,.home-page>#achievements .section-header,.home-page>#projects .section-header,.home-page>#experience .section-header,.home-page>#university .section-header{margin-bottom:28px}}
 .ua-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:16px 18px 28px;border-radius:24px;background:#eeece5;border:1px solid rgba(142,31,27,.10);cursor:pointer;transition:background-color .3s ease,box-shadow .3s ease,transform .3s ease}
 .ua-card:hover,.ua-card:focus-visible{background:#fff;box-shadow:0 22px 44px -26px rgba(107,14,12,.42);transform:translateY(-4px)}
 .ua-card:focus-visible{outline:2px solid var(--red);outline-offset:3px}
