@@ -365,6 +365,7 @@ function Header({ path, menuOpen, setMenuOpen }) {
         const section = document.getElementById(id);
         if (section && section.offsetTop <= marker) current = key;
       });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80) current = "contact";
       setActiveSection(current);
     };
     updateFromScroll();
