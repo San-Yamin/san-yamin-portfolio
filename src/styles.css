@@ -454,6 +454,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #efc75e;outline-offset:4p
 }
 @media(min-width:1101px){
   .experiences-page .page-hero>div>p:last-child{max-width:none;white-space:nowrap;font-size:18px}
+  .university-detail .page-hero>div>p:last-child{max-width:none;white-space:nowrap;font-size:18px}
 }
 @media(max-width:760px){
   .nav-wrap{height:72px}
