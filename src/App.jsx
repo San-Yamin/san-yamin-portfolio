@@ -246,8 +246,8 @@ function UniversityPage() {
       {universityFeatures.map((x,i)=><section className={`experience-feature${i % 2 ? " reverse" : ""}`} id={x.slug} key={x.slug}>
         <div className="section-inner">
           <div className="experience-feature-copy reveal"><div className="experience-feature-meta"><span>0{i + 1} · {x.type}</span><span>{x.place}</span></div><h2>{x.title}</h2><p className="experience-role">{x.role}</p>{x.paragraphs.map(p=><p key={p}>{p}</p>)}</div>
-          <div className="experience-gallery reveal">
-            {x.gallery.map((photo,j)=><figure className={j === 0 && x.gallery.length > 1 ? "lead-photo" : ""} key={photo.file} role="button" tabIndex="0" aria-label={`View full size: ${x.title} photo ${j + 1}`} onClick={() => openPhoto(x,photo,j)} onKeyDown={e=>{if(e.key === "Enter" || e.key === " "){e.preventDefault();openPhoto(x,photo,j)}}}><ImageSlot file={photo.file} alt={`${x.title} photo ${j + 1}`} /></figure>)}
+          <div className={`experience-gallery reveal${x.slug === "clubs-and-community" ? " portrait-safe-gallery" : ""}`}>
+            {x.gallery.map((photo,j)=><figure className={`${j === 0 && x.gallery.length > 1 ? "lead-photo " : ""}${x.slug === "clubs-and-community" && j === x.gallery.length - 1 ? "portrait-safe-photo" : ""}`} key={photo.file} role="button" tabIndex="0" aria-label={`View full size: ${x.title} photo ${j + 1}`} onClick={() => openPhoto(x,photo,j)} onKeyDown={e=>{if(e.key === "Enter" || e.key === " "){e.preventDefault();openPhoto(x,photo,j)}}}><ImageSlot file={photo.file} alt={`${x.title} photo ${j + 1}`} /></figure>)}
           </div>
         </div>
       </section>)}
