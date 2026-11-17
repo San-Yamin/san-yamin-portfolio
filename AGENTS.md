@@ -60,6 +60,10 @@ The primary public host is Vercel (`vercel.json`, publish `dist/client`, SPA rew
 
 Fonts are self-hosted in `public/fonts/*.woff2` (DM Sans, Oswald, Petemoss) with `@font-face` at the top of `src/styles.css`; do not reintroduce a Google Fonts `@import` or `fonts.gstatic` request. Keep the `preload` hints in `index.html` for the two text fonts and for `/assets/portrait-hero.webp`.
 
+Keep homepage section headings and subpage display titles in the bold condensed Oswald treatment shown on the live Vercel portfolio; do not replace them with a rounded display face.
+
+Keep the Achievements page as a pale editorial highlights layout: trophy-led hero, burgundy condensed display type, category pills, alternating photo-led stories, and a compact certificate gallery.
+
 Raster photos should stay between ~1080px on the short edge and 1600px on the long edge, re-encoded at q80–86, so they look crisp on Retina screens without bloat. Never upscale the reference/social-post graphics (Yellow Notebook, Aspire Now) or the protected portrait sources; re-encode only when a file is under-sized for its slot or grossly overweight.
 
 The hero uses a `<picture>` with `portrait-hero.webp` first and the untouched `portrait-hero.jpg` as fallback, so the protected source `portrait-hero.jpg` is never re-encoded or resized. Add new raster assets as optimized `.webp` siblings the same way.

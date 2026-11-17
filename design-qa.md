@@ -1,45 +1,33 @@
-# Design QA — Homepage Technical Projects Header
+**Findings**
+- No actionable P0, P1, or P2 mismatches remain for the requested typography and GitHub-arrow states.
+- The `/projects` hero uses self-hosted Oswald at weight 700, matching the bold condensed display character of the supplied Vercel reference.
+- The AI Fraud preview shows the GitHub arrow beside the project title on desktop and mobile, links to `https://github.com/San-Yamin/AI_Fraud_Adversarial`, and does not introduce horizontal overflow.
 
-- Source visual truth: `/var/folders/l_/kk01jrv15t5c4wzzzm64y8300000gn/T/codex-clipboard-3224de2b-b281-42f0-80aa-a719627346c5.png`
-- Implementation: `http://127.0.0.1:4173/#projects`
-- Browser-rendered evidence: in-app Browser capture emitted during this task (`projects-heading-implementation`)
-- Viewport: 1280 × 720 CSS px, device density 1
-- Source pixels: 2940 × 444; implementation viewport: 1280 × 720
-- State: desktop, default
+**Evidence**
+- Source visual truth: `/var/folders/l_/kk01jrv15t5c4wzzzm64y8300000gn/T/codex-clipboard-ac90a9a7-57fe-4a8d-bbc9-9eaf8db70c9e.png` (1952 × 1279 px). This is a typography reference from a different homepage section, so comparison is intentionally focused on the condensed display face rather than identical content or layout.
+- Desktop implementation: `/tmp/san-yamin-projects-oswald-desktop-final.png` (1440 × 1000 px), CSS viewport 1440 × 1000, device scale factor 1.
+- Desktop preview: `/tmp/san-yamin-ai-fraud-github-arrow-desktop.png` (1440 × 1000 px), CSS viewport 1440 × 1000, device scale factor 1.
+- Mobile preview: `/tmp/san-yamin-ai-fraud-github-arrow-mobile.png` (390 × 844 px), CSS viewport 390 × 844, device scale factor 1.
+- State: local `/projects` route and opened AI Fraud project preview.
+- Full-view comparison: the local projects hero has the same tall, narrow, uppercase Oswald character as the supplied Vercel heading reference; sizing remains appropriate for its compact subpage hero.
+- Focused comparison: the preview title remains legible and the cream circular external-link arrow is visibly aligned beside it at both tested breakpoints.
+- Fonts and typography: Oswald 700 confirmed for the projects hero; display hierarchy and wrapping are stable.
+- Spacing and layout rhythm: hero, project grid, preview image, caption, and inline action remain balanced with no horizontal overflow.
+- Colors and visual tokens: cream-on-burgundy treatment matches the established portfolio palette.
+- Image quality and asset fidelity: the original AI Fraud artwork remains sharp and uncropped in the contain-style preview.
+- Copy and content: project title, category, year, and GitHub destination are correct.
+- Primary interactions tested: open AI Fraud preview and expose the GitHub link at desktop and mobile sizes.
+- Console errors checked: none.
 
-## Full-view comparison evidence
+**Comparison History**
+- Initial issue: the deployed Vercel build does not contain the locally added GitHub arrow, and rounded Nunito was used for homepage section headings.
+- Fixes made: retained the arrow only inside the photo preview; switched homepage section titles to self-hosted Oswald while preserving the existing Oswald projects-page hero.
+- Post-fix evidence: desktop and mobile screenshots above; computed styles report Oswald 700 and the preview link resolves to the requested repository.
 
-The implementation uses the same section-header component as International Experiences. Both render a thin top divider, a 190px script-eyebrow column, a 35px grid gap, a condensed uppercase title in the wide column, and supporting copy directly below. The Projects section remains cream with burgundy display type and warm-brown copy. Browser measurements confirmed a 190px / 927px grid and zero horizontal overflow.
-
-## Focused region comparison evidence
-
-The heading region was inspected directly in the browser. Typography hierarchy, divider alignment, column placement, title scale, and description placement match the International Experiences header anatomy. No additional focused crop was required because the complete changed component is fully visible at the captured viewport.
-
-## Required fidelity surfaces
-
-- Fonts and typography: shared Petemoss eyebrow and Oswald condensed uppercase heading; hierarchy and wrapping match the reference section.
-- Spacing and layout rhythm: shared grid, divider, top padding, and 48px card gap; no oversized full-width hero remains.
-- Colors and visual tokens: cream background, burgundy heading/eyebrow, muted red divider, and warm-brown description are consistent.
-- Image quality and asset fidelity: no image assets are part of the changed header; project imagery remains untouched.
-- Copy and content: “Selected work,” “Technical projects,” and the requested project description are preserved.
-
-## Findings
-
-No actionable P0, P1, or P2 mismatches remain.
-
-## Comparison history
-
-- Initial mismatch: Projects used a full-width oversized hero and stacked eyebrow/title composition.
-- Fix: replaced the custom Projects header with the same shared `SectionHeader` component used by International Experiences.
-- Post-fix evidence: browser capture confirms matched two-column anatomy and zero horizontal overflow.
-
-## Primary interactions and console
-
-- The changed header is static; surrounding project-card links remain present and unchanged.
-- Page rendered successfully with no visible runtime error state.
-
-## Follow-up polish
-
-No P3 follow-up is required for the requested alignment change.
+**Implementation Checklist**
+- Build passes with `npm run build`.
+- Desktop and mobile typography verified.
+- Desktop and mobile GitHub arrow verified.
+- Deployment intentionally not performed.
 
 final result: passed

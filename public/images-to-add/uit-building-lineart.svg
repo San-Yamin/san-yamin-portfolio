@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" fill="none">
+  <g stroke="#B86B65" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+    <!-- left academic block -->
+    <path d="M28 244V111L86 57l164 38v149"/>
+    <path d="M28 128 86 76l164 36M28 150l58-48 164 36M28 174l58-48 164 36M28 198l58-48 164 36M28 222l58-48 164 36" opacity=".7"/>
+    <path d="M47 112v128M65 95v150M86 76v168M111 84v160M137 90v154M163 96v148M189 102v142M215 108v136M239 114v130" opacity=".72"/>
+    <path d="M45 133h198M45 158h198M45 183h198M45 208h198" opacity=".5"/>
+    <!-- central glass atrium and structural frame -->
+    <path d="M247 244V94l93-39 93 39v150"/>
+    <path d="M247 112h186M247 137h186M247 162h186M247 187h186M247 212h186" opacity=".72"/>
+    <path d="M266 86v158M286 78v166M306 70v174M326 62v182M346 70v174M366 78v166M386 86v158M406 94v150" opacity=".78"/>
+    <path d="M247 94 340 55l93 39M247 244l93-67 93 67M247 112l93 65 93-65M247 162l93 15 93-15" opacity=".8"/>
+    <!-- atrium roof and upper frame -->
+    <path d="M231 95 340 43l109 52M247 82l93-45 93 45"/>
+    <path d="M265 79 340 43l75 36M285 69l55-26 55 26M305 59l35-16 35 16" opacity=".65"/>
+    <!-- right academic block -->
+    <path d="M433 244V112l48-19 91 25v126"/>
+    <path d="M433 137h139M433 163h139M433 189h139M433 215h139" opacity=".62"/>
+    <path d="M451 105v139M474 96v148M497 102v142M520 108v136M543 114v130" opacity=".65"/>
+    <!-- entrance canopy -->
+    <path d="M274 195 455 161l122 31-190 46z"/>
+    <path d="M286 190 456 159l108 28-178 35z" opacity=".75"/>
+    <path d="M303 185 456 158M333 179 456 158M364 173 456 158M395 168 456 158M426 163 456 158" opacity=".55"/>
+    <path d="M300 196 280 244M344 187 324 244M518 188l42 56M470 178l39 66"/>
+    <path d="M280 244h284M300 232h244" opacity=".72"/>
+    <!-- entrance glazing and restrained ground line -->
+    <path d="M337 199v44M360 195v48M383 191v52M406 187v56M429 183v60M452 179v64" opacity=".62"/>
+    <path d="M14 258h572M45 269h520M88 280h430" opacity=".42"/>
+  </g>
+</svg>

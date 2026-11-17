@@ -56,6 +56,32 @@ const universityFeatures = [
   { slug:"clubs-and-community", type:"Member", place:"Music Club & Buddhist Association", title:"Music Club & Buddhist Association", role:"Member", paragraphs:["Active member of the university music community and the campus Buddhist association."], gallery:[{file:"university-clubs-01.jpg"},{file:"university-clubs-02.jpg"},{file:"university-clubs-03.jpg"},{file:"university-clubs-04.jpg"}] },
 ];
 
+const researchPublications = {
+  title:"A Cumulative Chained Risk Metric for Securing FinTech Mini-App Ecosystems",
+  status:"Presented at ICAIT 2026",
+  area:"Cybersecurity · FinTech",
+  event:"ICAIT 2026",
+  date:"5 November 2026",
+  summary:"This paper introduces CCRS, a cumulative chained-risk score, and MSLM, a three-layer defense model for FinTech mini-app ecosystems.",
+  abstract:"FinTech mini-app ecosystems connect third-party code, platform APIs, and payment services. This research studies how individually manageable weaknesses can combine into higher-impact attack-chain scenarios and proposes a more chain-aware way to prioritize them.",
+  approach:"The study models six vulnerability classes across four synthetic attack chains in a controlled OWASP Juice Shop and Python prototype environment. CCRS uses cumulative-complement aggregation, while MSLM applies controls at merchant onboarding, API authorization, and payment integrity layers.",
+  findings:"The prototype passed 80 automated tests. Across 1,000 seeded attack trials per chain, MSLM blocked all 4,000 encoded attacks at their expected first enforcement layers and accepted all 4,000 matched legitimate controls. These results apply to the defined synthetic scenarios, not to general production security.",
+  gallery:[
+    {file:"research-icait-8106.webp", label:"ICAIT 2026 certificate portrait"},
+    {file:"research-icait-7989-vertical.webp", label:"ICAIT 2026 conference portrait"},
+    {file:"research-icait-7992.webp", label:"ICAIT 2026 conference presentation"},
+    {file:"research-icait-presentation-8112.webp", label:"Research presentation at ICAIT 2026"},
+    {file:"research-icait-presentation-8083.webp", label:"Research presentation Table of Content"},
+    {file:"research-icait-group-01.webp", label:"ICAIT 2026"},
+    {file:"research-icait-group-02.webp", label:"ICAIT 2026"},
+    {file:"research-icait-venue.webp", label:"ICAIT 2026 venue"},
+    {file:"research-icait-certificate-scan.webp", label:"ICAIT 2026 certificate"},
+    {file:"research-icait-group-03.webp", label:"ICAIT 2026 group photo"},
+    {file:"research-icait-group-04.webp", label:"ICAIT 2026 conference group photo"},
+    {file:"research-icait-group-05.webp", label:"ICAIT 2026 student group photo"},
+  ],
+};
+
 const achievements = [
   { slug:"kbzpay-appcube-hackathon", type:"Hackathon", date:"March 2026", title:"KBZPay × HUAWEI AppCube Hackathon 2026", role:"Best Mini App Award · 2nd Place (1st Runner-Up)", leadershipRole:"Team Leader", description:"Led the development of “EverAfter,” a mini app built using the AppCube platform, during the KBZPay AppCube Mini Apps Hackathon 2026.", gallery:[{file:"achievement-kbzpay-hackathon-01.jpg"},{file:"achievement-kbzpay-hackathon-02.jpg"},{file:"achievement-kbzpay-hackathon-03.jpg"},{file:"achievement-kbzpay-hackathon-04.jpg"}] },
   { slug:"youth-entrepreneurship-program", type:"Program", date:"May 2024", title:"Youth Entrepreneurship Program (YEP)", organization:"American Center Yangon", role:"Second Prize · Pitch Deck Competition", description:"Participated in the Youth Entrepreneurship Program hosted by the American Center Yangon, where my team won second prize in a pitch deck competition for a sustainability-focused business idea.", homeImageFile:"achievement-youth-entrepreneurship-03.jpg", gallery:[{file:"achievement-youth-entrepreneurship-01.jpg"},{file:"achievement-youth-entrepreneurship-02.jpg"},{file:"achievement-youth-entrepreneurship-03.jpg"},{file:"achievement-youth-entrepreneurship-04.jpg"}] },
@@ -64,6 +90,7 @@ const achievements = [
 ];
 
 const certificates = [
+  { id:"ai-career-readiness-training", category:"Program", date:"11 November 2026", title:"AI Career Readiness Training", organization:"ASEAN Foundation · LinkedIn", imageFile:"certificate-ai-career-readiness.webp", role:"Certificate of Completion" },
   { id:"asean-data-science-explorers", category:"Program", date:"2026", title:"ASEAN Data Science Explorers 2026 Competition", organization:"SAP · ASEAN Foundation", imageFile:"certificate-asean-data-science-explorers.webp", role:"Certificate of Participation" },
   { id:"geoai-bootcamp-1", category:"Program", date:"7 to 9 July 2026", title:"ASEAN GeoAI Fusion 2026 · Bootcamp 1: Foundation Track", organization:"Malaysian Communications and Multimedia Commission (MCMC)", imageFile:"certificate-asean-geoai-bootcamp-1.webp", role:"Certificate of Participation" },
   { id:"geoai-bootcamp-2", category:"Program", date:"21 to 23 July 2026", title:"ASEAN GeoAI Fusion 2026 · Bootcamp 2: Advance Track", organization:"Malaysian Communications and Multimedia Commission (MCMC)", imageFile:"certificate-asean-geoai-bootcamp-2.webp", role:"Certificate of Participation" },
@@ -146,22 +173,30 @@ function ProjectCard({ project, index=0, featured=false, onPreview }) {
   return <article className={`project-card${featured?" featured":""} reveal-fade`} style={{"--rd":`${Math.min(index,8)*70}ms`}} role="link" tabIndex="0" aria-label={`View project: ${project.title}`} onClick={openProject} onKeyDown={event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openProject(event);}}}><div className="project-image"><ImageSlot src={project.image} file={project.imageFile} alt={project.title} /><span className="project-number" aria-hidden="true">0{index + 1}</span></div><div className="card-body"><div className="meta"><span>{project.category}</span><span>{project.year}</span></div><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.tags.map(tag=><span key={tag}>{tag}</span>)}</div><span className="project-action" aria-hidden="true"><span className="project-action-icon">→</span></span></div></article>;
 }
 
-function PhotoLightbox({ src, alt, title, subtitle, onClose }) {
+function PhotoLightbox({ src, alt, title, subtitle, onClose, returnFocusRef }) {
   const closeRef = useRef(null);
+  const previousFocusRef = useRef(null);
   const [closing, setClosing] = useState(false);
   const close = () => { if (closing) return; setClosing(true); setTimeout(onClose, 180); };
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
+    previousFocusRef.current = document.activeElement;
     document.body.style.overflow = "hidden";
+    document.body.classList.add("lightbox-open");
     closeRef.current?.focus();
     const onKey = event => { if (event.key === "Escape") close(); };
     addEventListener("keydown", onKey);
-    return () => { document.body.style.overflow = previousOverflow; removeEventListener("keydown", onKey); };
-  });
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.body.classList.remove("lightbox-open");
+      removeEventListener("keydown", onKey);
+      (returnFocusRef?.current || previousFocusRef.current)?.focus?.();
+    };
+  }, []);
 
   return <div className={`lightbox${closing ? " closing" : ""}`} role="dialog" aria-modal="true" aria-label={alt} onClick={close}>
-    <button className="lightbox-close" ref={closeRef} onClick={close} aria-label="Close photo preview">×</button>
+    <button className="lightbox-close" ref={closeRef} onClick={event=>{event.stopPropagation();close();}} aria-label="Close photo preview">×</button>
     <figure className="lightbox-figure" onClick={event => event.stopPropagation()}>
       <img src={src} alt={alt} />
       <figcaption className="lightbox-caption"><strong>{title}</strong><span>{subtitle}</span></figcaption>
@@ -173,18 +208,26 @@ function ProjectLightbox({ project, rect, onClose }) {
   const src = project.image || `/images-to-add/${project.imageFile}`;
   const imgRef = useRef(null);
   const closeRef = useRef(null);
+  const previousFocusRef = useRef(null);
   const [closing, setClosing] = useState(false);
 
   const close = () => { if (closing) return; setClosing(true); setTimeout(onClose, 180); };
 
   useEffect(() => {
     const prev = document.body.style.overflow;
+    previousFocusRef.current = document.activeElement;
     document.body.style.overflow = "hidden";
+    document.body.classList.add("lightbox-open");
     closeRef.current?.focus();
     const onKey = (e) => { if (e.key === "Escape") close(); };
     addEventListener("keydown", onKey);
-    return () => { document.body.style.overflow = prev; removeEventListener("keydown", onKey); };
-  });
+     return () => {
+       document.body.style.overflow = prev;
+       document.body.classList.remove("lightbox-open");
+       removeEventListener("keydown", onKey);
+       previousFocusRef.current?.focus?.();
+     };
+   }, []);
 
   useLayoutEffect(() => {
     const el = imgRef.current;
@@ -210,7 +253,7 @@ function ProjectLightbox({ project, rect, onClose }) {
 
   return (
     <div className={`lightbox${closing ? " closing" : ""}`} role="dialog" aria-modal="true" aria-label={`${project.title} preview`} onClick={close}>
-      <button className="lightbox-close" ref={closeRef} onClick={close} aria-label="Close preview">×</button>
+       <button className="lightbox-close" ref={closeRef} onClick={event=>{event.stopPropagation();close();}} aria-label="Close preview">×</button>
       <figure className="lightbox-figure" onClick={event => event.stopPropagation()}>
         <img ref={imgRef} src={src} alt={project.title} />
         <figcaption className="lightbox-caption">
@@ -335,16 +378,27 @@ function Header({ path, menuOpen, setMenuOpen }) {
       setActiveIndicator(null);
       return;
     }
-    const activeButton = navRef.current.querySelector(`[data-nav-key="${activeSection}"]`);
-    if (!activeButton) return;
-    const navBox = navRef.current.getBoundingClientRect();
-    const buttonBox = activeButton.getBoundingClientRect();
-    setActiveIndicator({
-      left: buttonBox.left - navBox.left - 9,
-      top: buttonBox.top - navBox.top - 4,
-      width: buttonBox.width + 18,
-      height: buttonBox.height + 8,
-    });
+    const updateIndicator = () => {
+      const activeButton = navRef.current?.querySelector(`[data-nav-key="${activeSection}"]`);
+      if (!activeButton || !navRef.current) return;
+      const navBox = navRef.current.getBoundingClientRect();
+      const buttonBox = activeButton.getBoundingClientRect();
+      setActiveIndicator({
+        left: buttonBox.left - navBox.left - 9,
+        top: buttonBox.top - navBox.top - 4,
+        width: buttonBox.width + 18,
+        height: buttonBox.height + 8,
+      });
+    };
+    updateIndicator();
+    addEventListener("resize", updateIndicator);
+    const resizeObserver = new ResizeObserver(updateIndicator);
+    resizeObserver.observe(navRef.current);
+    document.fonts?.ready.then(updateIndicator);
+    return () => {
+      removeEventListener("resize", updateIndicator);
+      resizeObserver.disconnect();
+    };
   }, [path, activeSection, menuOpen]);
   useEffect(() => {
     if (path !== "/") return;
@@ -388,14 +442,15 @@ function Header({ path, menuOpen, setMenuOpen }) {
 
 function Home() {
   const [preview, setPreview] = useState(null);
+  const [researchPreview, setResearchPreview] = useState(null);
   const openAchievement = () => navigateTo("/achievements");
   const featuredAchievements = achievements.slice(0, 2);
   return <main className="home-page">
     <section id="top" className="hero"><div className="hero-copy"><div className="hero-focus hero-focus-top" aria-label="Focus areas">{["Cybersecurity","AI & ML","Digital Trust","Social Impact","Global Collaboration"].map(item=><span key={item}>{item}</span>)}</div><h1>San<br/>Yamin<span>.</span></h1><p className="intro">I’m San Yamin from Myanmar, working at the intersection of cybersecurity, AI, digital trust, and youth empowerment. As a cybersecurity student, researcher, content creator, and tech builder, I combine technical problem-solving with visual storytelling to make technology safer, more responsible, and more accessible. Through research, technical projects, Aspire Now, and SanSan’s Yellow Notebook, I share opportunities and experiences while building digital solutions that can create meaningful impact for young people and communities.</p><div className="hero-links"><a className="text-link" href="https://www.linkedin.com/in/san-yamin-18b781307" target="_blank" rel="noreferrer">LinkedIn <ExternalArrow /></a><a className="text-link" href="https://github.com/San-Yamin" target="_blank" rel="noreferrer">GitHub <ExternalArrow /></a><a className="text-link" href="/images-to-add/CV_San_Yamin.pdf" download>Download CV <ExternalArrow /></a></div></div><div className="hero-visual-wrap"><span className="hero-word" aria-hidden="true">Portfolio</span><figure className="hero-visual"><div className="hero-image-frame"><picture><source type="image/webp" srcSet="/assets/portrait-hero.webp"/><img src="/assets/portrait-hero.jpg" alt="San Yamin" fetchPriority="high" decoding="async"/></picture></div><figcaption className="portrait-label">Yangon, Myanmar</figcaption></figure></div></section>
 
-    <section className="section cream education education-editorial"><div className="section-inner education-editorial-layout"><div className="education-accent" aria-hidden="true"><span className="script">Education</span><strong>UIT</strong></div><div className="education-details"><span className="label">Current education</span><h2>University of Information Technology <a className="education-site-link" href="https://uit.edu.mm/" target="_blank" rel="noreferrer" aria-label="Visit the University of Information Technology website"><ExternalArrow /></a></h2><p className="education-location">Yangon, Myanmar</p><div className="education-meta"><p><strong>B.C.Tech in Computer Technology</strong></p><p>Specialization: <strong>Cybersecurity</strong></p><time>2022 — Present</time></div><div className="academic-focus"><span className="label">Academic Focus</span><p>Cybersecurity · Artificial Intelligence · Information Systems · Software Development</p></div></div></div></section>
+     <section className="section cream education education-editorial"><div className="section-inner education-editorial-layout"><div className="education-accent" aria-hidden="true"><span className="script">Education<br/>&amp; Research</span><span className="education-divider"/><strong>UIT</strong><img className="education-building" src="/images-to-add/uit-building-lineart.svg" alt="" /></div><div className="education-main"><div className="education-details"><span className="label">Current education</span><h2>University of Information Technology <a className="education-site-link" href="https://uit.edu.mm/" target="_blank" rel="noreferrer" aria-label="Visit the University of Information Technology website"><ExternalArrow /></a></h2><p className="education-location">Yangon, Myanmar</p><div className="education-meta"><p><strong>B.C.Tech in Computer Technology</strong></p><p>Specialization: <strong>Cybersecurity</strong></p><time>2022 — Present</time></div><div className="academic-focus"><span className="label">Academic Focus</span><p>Cybersecurity · Artificial Intelligence · Information Systems · Software Development</p></div></div><div id="research" className="research-embedded"><h3>Research &amp; Publications</h3><div className="research-embedded-entry"><div className="research-embedded-copy"><span className="research-embedded-label">Conference paper · ICAIT 2026</span><h4>{researchPublications.title}</h4><button className="research-text-link" type="button" onClick={()=>navigateTo("/research")}>View research ↗</button></div></div></div></div></div></section>
 
-     <section id="leadership" className="section red"><div className="section-inner"><SectionHeader eyebrow="People & impact" title="Leadership & Community"/><div className="leadership-grid">{leadership.map((item,i)=><article className="leadership-card reveal" style={{"--rd":`${i*80}ms`}} key={item.slug}><ImageSlot file={item.imageFile} alt={item.title}/><div className="card-body"><span className="label">{item.role}</span><h3>{item.title}</h3><p>{item.description}</p><ArrowLink onClick={()=>navigateTo(`/leadership/${item.slug}`)}>Discover More</ArrowLink></div></article>)}</div></div></section>
+      <section id="leadership" className="section red"><div className="section-inner"><SectionHeader eyebrow="People & impact" title="Leadership & Community"/><div className="leadership-grid">{leadership.map((item,i)=><article className="leadership-card reveal" style={{"--rd":`${i*80}ms`}} key={item.slug}><ImageSlot file={item.imageFile} alt={item.title}/><div className="card-body"><span className="label">{item.role}</span><h3>{item.title}</h3><p>{item.description}</p><ArrowLink onClick={()=>navigateTo(`/leadership/${item.slug}`)}>Discover More</ArrowLink></div></article>)}</div></div></section>
 
       <section id="international" className="section cream international-section"><div className="section-inner"><SectionHeader eyebrow="Across borders" title="International experiences"/><div className="card-grid">{exchanges.slice(0,3).map((x,i)=><ExchangeCard item={x} index={i} key={x.title}/>)}</div><ArrowLink onClick={()=>navigateTo("/international-experiences")}>View experiences</ArrowLink></div></section>
 
@@ -408,13 +463,22 @@ function Home() {
      <section id="university" className="section cream university-section"><div className="section-inner"><SectionHeader eyebrow="Beyond the classroom" title="University Activities"/><UniversityCardGrid /><ArrowLink onClick={()=>navigateTo("/university-activities")}>View university activities</ArrowLink></div></section>
 
     <footer id="contact" className="section contact dark"><div className="section-inner"><span className="script">Let’s connect</span><div className="contact-row"><div><h2>Let’s build something meaningful.</h2></div><div className="contact-links"><a href="mailto:sanyamin@uit.edu.mm">Email <ExternalArrow /></a><a href="https://www.linkedin.com/in/san-yamin-18b781307" target="_blank" rel="noreferrer">LinkedIn <ExternalArrow /></a></div></div><div className="footer-line"><span>© 2026 San Yamin</span><button onClick={()=>scrollToSection(document.body, 0)}>Back to top ↑</button></div></div></footer>
-    {preview && <ProjectLightbox project={preview.project} rect={preview.rect} onClose={()=>setPreview(null)}/>}
-  </main>;
+     {preview && <ProjectLightbox project={preview.project} rect={preview.rect} onClose={()=>setPreview(null)}/>}
+     {researchPreview && <PhotoLightbox {...researchPreview} onClose={()=>setResearchPreview(null)} />}
+   </main>;
 }
 
 function ProjectsPage() {
   const [preview, setPreview] = useState(null);
   return <main className="subpage cream projects-page"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Selected work</span><p className="kicker">Technical portfolio</p><h1>Projects.</h1><p>A selected collection of projects across cybersecurity, AI, databases, web development, and engineering.</p></div></section><section id="projects" className="section"><div className="section-inner"><div className="card-grid">{projects.map((p,i)=><ProjectCard project={p} index={i} key={p.title} onPreview={(project,rect)=>setPreview({project,rect})}/>)}</div></div></section>{preview && <ProjectLightbox project={preview.project} rect={preview.rect} onClose={()=>setPreview(null)}/>}</main>;
+}
+
+function ResearchPage() {
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const openerRef = useRef(null);
+  const closePhoto = () => setSelectedPhoto(null);
+  const renderPhoto = (photo,i) => <button className={`research-photo research-photo-${i}`} type="button" key={photo.file} ref={element=>{if(selectedPhoto?.src.endsWith(photo.file)) openerRef.current=element;}} onClick={event=>{openerRef.current=event.currentTarget;setSelectedPhoto({src:`/images-to-add/${photo.file}`,alt:photo.label,title:"ICAIT 2026",subtitle:researchPublications.date})}} aria-label={`Open ${photo.label} full size`}><ImageSlot file={photo.file} alt={photo.label}/></button>;
+  return <main className="subpage cream research-page"><section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Research &amp; Publications</span><h1>Research.</h1><p>Exploring cybersecurity, artificial intelligence, digital trust, and secure technology through applied research.</p></div></section><section className="section research-detail"><div className="section-inner"><div className="research-detail-heading"><span className="label">01 · {researchPublications.status}</span><h2>{researchPublications.title}</h2><p>{researchPublications.summary}</p></div><div className="research-detail-meta"><span>{researchPublications.area}</span><span>{researchPublications.event}</span><time>{researchPublications.date}</time></div><div className="research-detail-story"><article><span className="label">Overview</span><p>{researchPublications.abstract}</p></article><article><span className="label">Approach</span><p>{researchPublications.approach}</p></article><article><span className="label">Current findings</span><p>{researchPublications.findings}</p></article></div><div className="research-detail-gallery">{researchPublications.gallery.map((photo,i)=>renderPhoto(photo,i))}</div></div></section>{selectedPhoto&&<PhotoLightbox {...selectedPhoto} returnFocusRef={openerRef} onClose={closePhoto}/>}</main>;
 }
 
 function ExchangesPage() {
@@ -534,6 +598,6 @@ export function App() {
     els.forEach(el=>{ if(!el.classList.contains("is-visible")) io.observe(el); });
     return ()=>io.disconnect();
   },[path]);
-  let page=path==="/"?<Home/>:path==="/projects"?<ProjectsPage/>:path==="/international-experiences"?<ExchangesPage/>:path==="/university-activities"?<UniversityPage/>:path==="/achievements"?<AchievementsPage/>:path==="/certificates"?<CertificatesPage/>:path.startsWith("/leadership/")?<LeadershipPage slug={path.split("/").pop()}/>:<NotFound/>;
+  let page=path==="/"?<Home/>:path==="/projects"?<ProjectsPage/>:path==="/research"?<ResearchPage/>:path==="/international-experiences"?<ExchangesPage/>:path==="/university-activities"?<UniversityPage/>:path==="/achievements"?<AchievementsPage/>:path==="/certificates"?<CertificatesPage/>:path.startsWith("/leadership/")?<LeadershipPage slug={path.split("/").pop()}/>:<NotFound/>;
   return <><Header path={path} menuOpen={menuOpen} setMenuOpen={setMenuOpen}/><div className="route" key={path}>{page}</div></>;
 }
