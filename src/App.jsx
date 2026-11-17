@@ -361,6 +361,8 @@ function ExchangeCard({ item, index }) {
 function Header({ path, menuOpen, setMenuOpen }) {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState(path === "/" ? "home" : path.startsWith("/leadership/") ? "leadership" : path === "/international-experiences" ? "international" : path === "/achievements" || path === "/certificates" ? "achievements" : path === "/projects" ? "projects" : "");
+  const sectionNavigationLock = useRef(false);
+  const pendingSection = useRef(null);
   const navRef = useRef(null);
   const [activeIndicator, setActiveIndicator] = useState(null);
   useEffect(() => {
@@ -370,7 +372,7 @@ function Header({ path, menuOpen, setMenuOpen }) {
     return () => removeEventListener("scroll", onScroll);
   }, []);
   useEffect(() => {
-    if (path === "/") { setActiveSection("home"); return; }
+    if (path === "/") { setActiveSection(pendingSection.current || "home"); return; }
     setActiveSection(path.startsWith("/leadership/") ? "leadership" : path === "/international-experiences" ? "international" : path === "/achievements" || path === "/certificates" ? "achievements" : path === "/projects" ? "projects" : "");
   }, [path]);
   useLayoutEffect(() => {
@@ -413,6 +415,7 @@ function Header({ path, menuOpen, setMenuOpen }) {
       ["contact", "contact"],
     ];
     const updateFromScroll = () => {
+      if (sectionNavigationLock.current) return;
       const marker = window.scrollY + 150;
       let current = "home";
       sections.forEach(([key, id]) => {
@@ -428,8 +431,25 @@ function Header({ path, menuOpen, setMenuOpen }) {
     return () => removeEventListener("scroll", updateFromScroll);
   }, [path]);
   const go = (target) => {
-    if (location.pathname !== "/") { navigateTo("/"); setTimeout(()=>scrollToSection(target),60); }
-    else scrollToSection(target);
+    const sectionKey = target.replace("#", "");
+    sectionNavigationLock.current = true;
+    pendingSection.current = sectionKey;
+    setActiveSection(sectionKey);
+    const finishNavigation = () => {
+      sectionNavigationLock.current = false;
+      pendingSection.current = null;
+      setActiveSection(sectionKey);
+    };
+    if (location.pathname !== "/") {
+      navigateTo("/");
+      setTimeout(() => {
+        scrollToSection(target);
+        setTimeout(finishNavigation, 480);
+      }, 60);
+    } else {
+      scrollToSection(target);
+      setTimeout(finishNavigation, 480);
+    }
     setMenuOpen(false);
   };
   const navItem = (key, label, onClick) => {
