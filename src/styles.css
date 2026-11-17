@@ -543,7 +543,7 @@ body.lightbox-open .lightbox-figure img{max-height:calc(100vh - 220px)}
 .research-detail-gallery .image-slot{width:100%;height:100%;min-height:0;padding:0;border:0;background:none}
 .research-detail-gallery img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;background:none;border-radius:12px;transition:transform .35s cubic-bezier(.2,.75,.25,1)}
 .research-detail-gallery .research-photo-0 img{object-position:center 34%}
-.research-detail-gallery .research-photo-1 img{object-position:center 32%}
+.research-detail-gallery .research-photo-1 img{object-position:center 65%}
 .research-detail-gallery .research-photo-3 img,.research-detail-gallery .research-photo-4 img,.research-detail-gallery .research-photo-5 img{object-position:center 30%}
 .research-detail-gallery .research-photo-8 img{object-fit:contain}
 .research-detail-gallery button:hover img{transform:scale(1.025)}
