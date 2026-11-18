@@ -165,6 +165,10 @@ function BackToHome() {
   return <button className="page-back" onClick={()=>navigateTo("/")} aria-label="Back to homepage"><span aria-hidden="true">←</span> Back to home</button>;
 }
 
+function BackToTop() {
+  return <button className="arrow-link back-to-top" type="button" onClick={()=>scrollToSection(document.body, 0)} aria-label="Back to top">Back to top <span aria-hidden="true">↑</span></button>;
+}
+
 function ProjectCard({ project, index=0, featured=false, onPreview }) {
   const openProject = (event) => {
     if (onPreview) { const img = event.currentTarget.querySelector("img"); onPreview(project, img ? img.getBoundingClientRect() : null); }
@@ -299,7 +303,7 @@ function UniversityPage() {
   </main>;
 }
 
-function CertificateGallery({ items }) {
+function CertificateGallery({ items, showViewAll = true }) {
   const [selected, setSelected] = useState(null);
 
   if (!items || items.length === 0) return null;
@@ -327,7 +331,7 @@ function CertificateGallery({ items }) {
             </article>
           ))}
         </div>
-        <button className="certificate-view-all" onClick={() => navigateTo("/certificates")}>View all certificates <span>→</span></button>
+        {showViewAll && <button className="certificate-view-all" onClick={() => navigateTo("/certificates")}>View all certificates <span>→</span></button>}
       </div>
       {selected && <PhotoLightbox src={`/images-to-add/${selected.imageFile}`} alt={`${selected.title} certificate full size`} title={selected.title} subtitle={`${selected.organization} · ${selected.date}`} onClose={() => setSelected(null)} />}
     </section>
@@ -338,7 +342,7 @@ function CertificatesPage() {
   const activeTab = new URLSearchParams(window.location.search).get("tab");
   return <main className="subpage cream certificates-page">
     <section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Recognition</span><h1>Certificates.</h1><nav className="achievement-hero-tabs" aria-label="Achievement categories"><a href="/achievements?tab=hackathons#kbzpay-appcube-hackathon">Hackathons</a><a href="/achievements?tab=awards#kbzpay-appcube-hackathon">Awards</a><a href="/achievements?tab=programs#youth-entrepreneurship-program">Programs</a><a className={activeTab === "certificates" ? "active" : ""} href="/certificates?tab=certificates" aria-current={activeTab === "certificates" ? "page" : undefined}>Certificates</a></nav></div></section>
-    <CertificateGallery items={certificates} />
+     <CertificateGallery items={certificates} showViewAll={false} />
   </main>;
 }
 
@@ -570,7 +574,7 @@ function ExchangesPage() {
             <p>{x.summary}</p>
           </article>)}
         </div>
-      </div>
+     </div>
     </section>
     {selectedPhoto && <PhotoLightbox src={selectedPhoto.src} alt={selectedPhoto.alt} title={selectedPhoto.title} subtitle={selectedPhoto.subtitle} onClose={() => setSelectedPhoto(null)} />}
   </main>;
@@ -619,5 +623,6 @@ export function App() {
     return ()=>io.disconnect();
   },[path]);
   let page=path==="/"?<Home/>:path==="/projects"?<ProjectsPage/>:path==="/research"?<ResearchPage/>:path==="/international-experiences"?<ExchangesPage/>:path==="/university-activities"?<UniversityPage/>:path==="/achievements"?<AchievementsPage/>:path==="/certificates"?<CertificatesPage/>:path.startsWith("/leadership/")?<LeadershipPage slug={path.split("/").pop()}/>:<NotFound/>;
-  return <><Header path={path} menuOpen={menuOpen} setMenuOpen={setMenuOpen}/><div className="route" key={path}>{page}</div></>;
+  const blushEnd = path === "/international-experiences" || path === "/university-activities" || path === "/achievements" || path === "/certificates" || path.startsWith("/leadership/");
+  return <><Header path={path} menuOpen={menuOpen} setMenuOpen={setMenuOpen}/><div className="route" key={path}>{page}</div>{path !== "/" && path !== "/achievements" && <div className={`page-end-back-to-top${blushEnd ? " page-end-blush" : ""}`}><div className="section-inner"><BackToTop /></div></div>}</>;
 }
