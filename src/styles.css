@@ -171,8 +171,9 @@ a:focus-visible,button:focus-visible{outline:3px solid #efc75e;outline-offset:4p
 .project-card .tags{gap:7px;margin-top:auto}
 .project-card .tags span{padding:6px 9px;background:rgba(255,255,255,.27);border:1px solid rgba(142,31,27,.2);border-radius:999px;color:#2a1a17;font-size:9px;letter-spacing:.55px}
 .project-action{display:flex;align-items:center;justify-content:flex-end;width:100%;margin-top:13px;padding-top:12px;border-top:1px solid rgba(158,35,29,.18);color:var(--project-detail);pointer-events:none}
-.project-action-icon{width:28px;height:28px;display:grid;place-items:center;background:var(--project-detail);border:1px solid var(--project-detail);border-radius:50%;color:#fff7f1;font-size:14px;transition:background-color .2s ease,border-color .2s ease,transform .2s ease}
-#projects .project-card:hover .project-action-icon{background:#861d19;border-color:#861d19;transform:translateX(4px)}
+.project-action-icon{width:28px;height:28px;display:grid;place-items:center;background:var(--project-detail);border:1px solid var(--project-detail);border-radius:50%;color:#fff7f1;font-size:14px;transition:background-color .2s ease,border-color .2s ease,transform 180ms cubic-bezier(.2,.75,.25,1)}
+#projects .project-card:is(:hover,:focus-visible) .project-action-icon{background:#861d19;border-color:#861d19}
+@media(prefers-reduced-motion:no-preference){#projects .project-card:is(:hover,:focus-visible) .project-action-icon{transform:translateX(3px)}}
 #projects .project-card h3{color:#8e1f1b}
 #projects .project-card p,#projects .project-card .meta>span:last-child,#projects .project-card .tags span{color:#513732}
 #projects .project-card,#projects .project-card:nth-child(3n+2),#projects .project-card:nth-child(3n+3),#projects .project-card.featured{--project-detail:#9e231d;padding:0;background:#f3e6e3;border:1px solid #d8b7af;border-radius:20px;color:#5a403a;box-shadow:0 9px 24px rgba(90,29,24,.07)}
@@ -406,6 +407,7 @@ body.lightbox-open .lightbox-figure img{max-height:calc(100vh - 220px)}
 .section-header::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.75,.25,1) .1s}
 .section-header.is-visible::before{transform:scaleX(1)}
 .fade-img.is-loaded{animation:fade-in .5s ease both}
+.project-card .fade-img.is-loaded,.home-page article .fade-img.is-loaded{animation:none}
 @keyframes fade-in{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.section-header::before{transform:none!important}}
 
