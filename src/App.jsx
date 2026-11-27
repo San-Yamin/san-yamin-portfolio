@@ -344,7 +344,7 @@ function CertificateGallery({ items, showViewAll = true }) {
 }
 
 function CertificatesPage() {
-  const activeTab = new URLSearchParams(window.location.search).get("tab");
+  const activeTab = new URLSearchParams(window.location.search).get("tab") || "certificates";
   return <main className="subpage cream certificates-page">
     <section className="page-hero red"><div className="section-inner"><BackToHome/><span className="script">Recognition</span><h1>Certificates.</h1><nav className="achievement-hero-tabs" aria-label="Achievement categories"><a href="/achievements?tab=awards#kbzpay-appcube-hackathon">Awards</a><a href="/achievements?tab=hackathons#kbzpay-appcube-hackathon">Hackathons</a><a href="/achievements?tab=programs#myanmar-cyber-security-challenge-2026">Programs</a><a className={activeTab === "certificates" ? "active" : ""} href="/certificates?tab=certificates" aria-current={activeTab === "certificates" ? "page" : undefined}>Certificates</a></nav></div></section>
      <CertificateGallery items={certificates} showViewAll={false} />
@@ -352,7 +352,7 @@ function CertificatesPage() {
 }
 
 function AchievementsPage() {
-  const activeTab = new URLSearchParams(window.location.search).get("tab") || "";
+  const activeTab = new URLSearchParams(window.location.search).get("tab") || "awards";
   const order = activeTab === "programs" ? ["myanmar-cyber-security-challenge-2026"] : activeTab === "awards" ? ["kbzpay-appcube-hackathon", "youth-entrepreneurship-program"] : ["unesco-youth-hackathon", "green-talent-generation-hackathon", "kbzpay-appcube-hackathon", "youth-entrepreneurship-program"];
   const items = order.map(slug => achievements.find(a => a.slug === slug)).filter(Boolean);
   const [photoPreview, setPhotoPreview] = useState(null);
@@ -615,7 +615,20 @@ export function App() {
     const toTop = () => window.scrollTo({ top:0, left:0, behavior:"instant" });
     toTop();
     const raf = requestAnimationFrame(toTop);
-    const timer = setTimeout(toTop, 60);
+    const anchor = location.hash.slice(1);
+    let tries = 0;
+    let timer = 0;
+    const settle = () => {
+      if (!anchor) { toTop(); return; }
+      const target = document.getElementById(anchor);
+      if (target) {
+        const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - 84);
+        window.scrollTo({ top, left: 0, behavior: "instant" });
+        return;
+      }
+      if (tries++ < 20) timer = setTimeout(settle, 50);
+    };
+    timer = setTimeout(settle, 60);
     return () => { cancelAnimationFrame(raf); clearTimeout(timer); };
   },[path]);
   useEffect(()=>{
