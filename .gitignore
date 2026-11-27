@@ -11,3 +11,8 @@ design-comparison.jpg
 redesign-comparison.jpg
 audit-before
 .vercel
+
+# local agent artifacts
+.playwright-mcp/
+design-references/
+mobile-education-*.png
